@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { users } from "../../data/users";
-import { user_statistics } from "../../data/user_statistics";
+//import { users } from "../../data/users";
+//import { user_statistics } from "../../data/user_statistics";
 import { Link, useParams } from "react-router-dom";
-
+const users = [];
+const user_statistics = [];
 const PlayersPage = () => {
   const [searchType, setSearchType] = useState("id");
   const [searchValue, setSearchValue] = useState("");
