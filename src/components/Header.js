@@ -21,16 +21,14 @@ const Header = () => {
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link}>Tournaments</Dropdown.Toggle>
               <Dropdown.Menu className='dropdown-menu'>
-                <Dropdown.Item className='dropdown-item' href="/tournaments1">Tournament 1</Dropdown.Item>
-                <Dropdown.Item href="/tournaments2">Tournament 2</Dropdown.Item>
+                <Dropdown.Item className='dropdown-item' href="/tournaments">Tournaments</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link}>Z Leagues</Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href="/zleagues1">Z League 1</Dropdown.Item>
-                <Dropdown.Item href="/zleagues2">Z League 2</Dropdown.Item>
+                <Dropdown.Item href="/zleagues">Z League</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
