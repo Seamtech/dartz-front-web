@@ -11,7 +11,7 @@ import Chat from '../Chat';
 const findTeamMembers = (teamId) =>
   team_members.filter((member) => member.team_id === teamId);
 
-const TournamentDetailPage = () => {
+const TournamentDetailsPage = () => {
   const { tournamentId } = useParams();
 
   // Find the tournament object based on tournamentId
@@ -166,4 +166,4 @@ const TournamentDetailPage = () => {
   );
 };
 
-export default TournamentDetailPage;
+export default TournamentDetailsPage;

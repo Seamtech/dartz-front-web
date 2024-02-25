@@ -1,0 +1,40 @@
+/* base.css */
+@font-face {
+  font-family: 'Sovjet Box Bold';
+  src: url('../../assets/SovjetBoxBd_v0_9.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Sovjet Box';
+  src: url('../../assets/SovjetBoxSC_v0_9.otf') format('opentype');
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b66803;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000000;
+}
+a, a:visited, .link {
+  color: var(--primary-color); /* Custom text color */
+  text-decoration: underline; /* Optional: removes underline */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+a:hover, a:focus, .link:hover, .link:focus {
+  color: var(--text-color); /* Change color on hover/focus */
+}
+
+hr {
+  background-color: var(--primary-color);
+  width: 75%;
+}

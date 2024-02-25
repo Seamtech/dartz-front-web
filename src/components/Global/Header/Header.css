@@ -1,0 +1,57 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  max-width: 475px; /* Maximum width of the logo */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the img element behaves as a block for centering */
+  margin: auto; /* Center the logo horizontally */
+}
+
+.navbar {
+  width: 100%; /* Ensure navbar takes the full width */
+  justify-content: center; /* Center navbar items */
+}
+.dropdown-menu {
+  background-color: var(--background-color) !important;
+}
+.dropdown-menu .dropdown-item {
+  background-color: var(--background-color);
+  color: var(--text-color); /* Change to your desired text color */
+}
+.dropdown-menu .dropdown-item:hover {
+  color: var(--primary-color); /* Text color on hover */
+  background-color: var(--hover-background-color); /* Background color on hover */
+}
+@media (max-width: 768px) {
+  .navbar-collapse {
+    flex-basis: 100%; /* Ensure navbar items can expand fully */
+    flex-grow: 1;
+  }
+
+  .nav {
+    flex-direction: initial;
+  }
+
+  .navbar-toggler {
+    display: flex; /* Ensure toggle button is always visible */
+    margin: 0 auto; /* Center toggle button */
+  }
+  .logo {
+    max-width: 275px; /* Smaller logo for tablets */
+  }
+}
+@media (max-width: 480px) {
+  .logo {
+    max-width: 275px; /* Even smaller logo for mobile phones */
+  }
+}

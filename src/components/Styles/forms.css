@@ -1,0 +1,66 @@
+/* forms.css */
+.form-container, input, select, button {
+    background-color: var(--background-color);
+    color: #a18b0f;
+    border: 1px solid #a18b0f;
+    border-radius: 5px;
+  }
+  
+  .form-container {
+    padding: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    width: 90%;
+  }
+  .mb-3 {
+    width: 100%;
+  }
+  .form-control {
+    background-color: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+    margin-bottom: 1em;
+  }
+  .form-control:-webkit-autofill {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+  input::placeholder, select::placeholder {
+
+  }
+  .form-button {
+    background-color: var(--background-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+
+  }
+  .form-button:hover {
+    background-color: var(--text-color) !important;
+    color: var(--background-color) !important;
+  }
+  .radio-container label:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border: 2px solid #a18b0f;
+    border-radius: 50%;
+  }
+  
+  .radio-container input[type="radio"]:checked + label:before {
+    background-color: #000;
+  }
+  
+  .errorMessage {
+    color: red;
+    margin: 5px 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    .form-container select, .form-container input, .form-container button {
+      width: 100%; /* Make form elements span the full width on mobile */
+      margin-bottom: 15px; /* Increase spacing for touch targets */
+    }
+  
+    .form-container {
+      width: 90%; /* Allow some margin on the sides */
+    }
+  }

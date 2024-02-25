@@ -1,0 +1,25 @@
+/* Example Utility Classes */
+.text-center {
+    text-align: center;
+  }
+  
+  .margin-auto {
+    margin: auto;
+  }
+  
+  .display-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  .center-horizontal {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+  }

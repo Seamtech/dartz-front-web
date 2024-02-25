@@ -6,7 +6,7 @@ const LandingPage = () => {
     <main className="main-content">
         <h1 className="sovjet-page-heading">Welcome to DartZ!</h1>
         <p>DartZ is the ultimate platform for dart tournaments, leagues, and leaderboards. Unleash your competitive spirit and join the DartZ community today.</p>
-        <Link className="cta-button" to="/signup">Get Started</Link>
+        <Link className="link" to="/signup">Get Started</Link>
       <div className="content-box">
         <h2 className="sovjet-content-heading">Features</h2>
         <div className="feature-list">

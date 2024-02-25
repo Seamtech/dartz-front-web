@@ -1,0 +1,14 @@
+:root {
+    --primary-color: #b66803;
+    --background-color: #272727;
+    --text-color: #a18b0f;
+    --hover-background-color: #000000;
+    --border-color: #b66803;
+
+      /* Responsive breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  }
+  
+  
