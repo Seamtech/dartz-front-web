@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color) !important;
+}
+.sovjet-page-heading, .sovjet-content-heading, .sovjet-section-heading, .sovjet-text, .App-link {
+  font-family: 'Sovjet Box', sans-serif;
+}
+
+.sovjet-page-heading {
+  font-size: 3rem; /* was 3.0rem, no change needed */
+  color: #b66803;
+  letter-spacing: 0.3rem; /* converted from .3rem */
+  text-decoration: underline;
+}
+
+.sovjet-content-heading {
+  font-size: 2rem; /* was 2.0em, assuming base size of 1rem */
+  color: hsla(41, 88%, 61%, 0.822);
+  letter-spacing: 0.2rem; /* converted from 0.2em */
+  text-decoration: underline;
+  padding-top: 1.5rem;
+  padding-bottom: .5rem;
+}
+
+.sovjet-section-heading {
+  font-size: 1.5rem; /* was 1.5em, assuming base size of 1rem */
+  color: #8b6129;
+  letter-spacing: 0.1rem; /* converted from 0.10em */
+}
+
+.sovjet-text, .App-link {
+  font-size: 1rem; /* was 1.0em, assuming base size of 1rem */
+  color: #a18b0f;
+  letter-spacing: 0.38rem; /* converted from 0.38em */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin-top: 11.25rem; /* converted from 180px */
+  margin-bottom: 2.1875rem; /* converted from 35px */
+}
+
+.main-content {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+}
+
+.content-wrapper {
+  width: 100%;
+  padding: 0.3125rem; /* converted from 5px */
+  color: #a18b0f;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .sovjet-page-heading {
+    font-size: 2.5rem; /* No conversion needed */
+    margin-top: 1.0rem;
+    margin-bottom: 2rem;
+  }
+
+  .content-wrapper {
+    padding: 1.0rem; /* converted from 20px */
+  }
+
+  .sovjet-content-heading, .sovjet-section-heading, .sovjet-text {
+    font-size: 1.8rem; /* Assuming 1em = 1rem for simplicity */
+  }
+  .main-content {
+    margin-top: -2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sovjet-page-heading {
+    font-size: 2rem; /* No conversion needed */
+  }
+
+  .content-wrapper {
+    padding: 0.9375rem; /* converted from 15px */
+  }
+
+  .sovjet-content-heading, .sovjet-section-heading, .sovjet-text {
+    font-size: 1.6rem; /* Assuming 1em = 1rem for simplicity */
+  }
+  .main-content {
+    margin-top: -2em; /* converted from 95px */
+  }
+  .app-container, .content-box {
+    width: auto; /* No conversion needed */
+  }
+}

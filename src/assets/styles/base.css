@@ -1,12 +1,12 @@
 /* base.css */
 @font-face {
   font-family: 'Sovjet Box Bold';
-  src: url('../../assets/SovjetBoxBd_v0_9.otf') format('opentype');
+  src: url('../../assets/fonts/SovjetBoxBd_v0_9.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Sovjet Box';
-  src: url('../../assets/SovjetBoxSC_v0_9.otf') format('opentype');
+  src: url('../../assets/fonts/SovjetBoxSC_v0_9.otf') format('opentype');
 }
 
 ::-webkit-scrollbar {

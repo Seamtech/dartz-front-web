@@ -9,10 +9,15 @@
   .form-container {
     padding: 5px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    width: 33% !important;
+    text-align: center;
   }
   .mb-3 {
     width: 100%;
+    text-align: left;
+  }
+  .form-label {
+    color: var(--text-color);
   }
   .form-control {
     background-color: var(--background-color) !important;
@@ -56,11 +61,10 @@
 
   @media screen and (max-width: 480px) {
     .form-container select, .form-container input, .form-container button {
-      width: 100%; /* Make form elements span the full width on mobile */
       margin-bottom: 15px; /* Increase spacing for touch targets */
     }
   
     .form-container {
-      width: 90%; /* Allow some margin on the sides */
+      width: 90% !important; /* Allow some margin on the sides */
     }
   }

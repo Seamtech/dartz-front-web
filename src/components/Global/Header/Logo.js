@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../assets/logo2.png';
+import logo from '../../../assets/img/logo2.png';
 import Navbar from 'react-bootstrap/Navbar';
 
 const Logo = () => (
