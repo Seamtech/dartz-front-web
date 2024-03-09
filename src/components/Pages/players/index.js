@@ -1,0 +1,1 @@
+export {default as PlayerProfile} from './find-player-page/PlayerProfile';

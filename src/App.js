@@ -1,36 +1,45 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header, Footer } from './components/Global';
-import { LandingPage } from './components/Pages/LandingPage';
-import { SignupPage } from './components/Pages/SignupPage';
-//import { } from './components/Pages/Tournaments/TournamentsPage/TournamentsPage';
-//import TournamentDetailsPage from './components/Pages/Tournaments/TournamentDetailsPage/TournamentDetailsPage'
-//import LeaderBoardsPage from './components/Pages/Leaderboards/LeaderboardsPage';
-//import ZLeaguesPage from './components/Pages/ZLeague/ZLeaguePage';
+import { Header, Footer } from './components/global';
+import { LandingPage } from './components/pages/landing-page';
+import { SignupPage } from './components/pages/signup-page';
+import { LoginPage } from './components/pages/login-page';
+import Logout  from './components/user/Logout';
+import { DashboardPage } from './components/pages/dashboard-page';
+import {FindPlayerPage, PlayerProfile} from './components/pages/players/find-player-page/';
+//import { } from './components/pages/Tournaments/TournamentsPage/TournamentsPage';
+//import TournamentDetailsPage from './components/pages/Tournaments/TournamentDetailsPage/TournamentDetailsPage'
+//import LeaderBoardsPage from './components/pages/Leaderboards/LeaderboardsPage';
+//import ZLeaguesPage from './components/pages/ZLeague/ZLeaguePage';
 
-//import LoginPage from './components/Pages/LoginPage/LoginPage';
 
-//import ChatPage from './components/Pages/ChatPage';
-//import FindPlayerPage from './components/Pages/Players/FindPlayerPage/FindPlayerPage';
-//import PlayerDetailPage from './components/Pages/Players/PlayerProfilePage/PlayerProfilePage';
-//import RulesPage from './components/Pages/RulesPage/RulesPage';
+
+//import ChatPage from './components/pages/ChatPage';
+
+//import PlayerDetailPage from './components/pages/Players/PlayerProfilePage/PlayerProfilePage';
+//import RulesPage from './components/pages/RulesPage/RulesPage';
 //import './App.css';
-import './components/Styles/variables.css'
-import './components/Styles/base.css'
-import './components/Styles/utilities.css'
-import './components/Styles/global.css'
-import './components/Styles/forms.css'
+import './assets/styles/variables.css'
+import './assets/styles/base.css'
+import './assets/styles/utilities.css'
+import './assets/styles/global.css'
+import './assets/styles/forms.css'
 
 
 
 const App = () => (
-  <div className="app-container">
+  <div className="main-content">
     <Router>
       <Header />
       <div className="content-wrapper">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} /> 
+          <Route path="/logout" element={<Logout />} /> 
+          <Route path="/dashboard" element={<DashboardPage />} /> 
+          <Route path="/players/findplayer" element={<FindPlayerPage />} /> 
+          <Route path="/players/:id" element={<PlayerProfile />} />
           {/* <Route path="/chat" element={<ChatPage />} /> */}
           {/* <Route path="/tournaments" element={<TournamentsPage />} /> */}
           {/* <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} /> */}
@@ -39,12 +48,11 @@ const App = () => (
           {/* <Route path="/zleagues" element={<ZLeaguesPage />} /> */}
           {/* <Route path="/leaderboards" element={<LeaderboardsPage />} /> */}
           {/* <Route path="/rules" element={<RulesPage />} /> */}
-          {/* <Route path="/login" element={<LoginPage />} /> */}
+
         </Routes>
       </div>
       <Footer />
     </Router>
   </div>
 );
-
 export default App;

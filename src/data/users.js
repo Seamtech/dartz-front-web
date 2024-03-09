@@ -10,9 +10,10 @@ export const users = [
       city: 'New York',
       state: 'NY',
       zip: '12345',
-      password_hash: 'abc123',
+      password: 'abc123',
       bs_live_code: 'abc456',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '2',
@@ -25,9 +26,10 @@ export const users = [
       city: 'Los Angeles',
       state: 'CA',
       zip: '23456',
-      password_hash: 'def456',
+      password: 'def456',
       bs_live_code: 'def789',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '3',
@@ -40,9 +42,10 @@ export const users = [
       city: 'Chicago',
       state: 'IL',
       zip: '34567',
-      password_hash: 'ghi789',
+      password: 'ghi789',
       bs_live_code: 'ghi012',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '4',
@@ -55,9 +58,10 @@ export const users = [
       city: 'San Francisco',
       state: 'CA',
       zip: '45678',
-      password_hash: 'jkl345',
+      password: 'jkl345',
       bs_live_code: 'jkl678',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '5',
@@ -70,9 +74,10 @@ export const users = [
       city: 'Miami',
       state: 'FL',
       zip: '56789',
-      password_hash: 'mno901',
+      password: 'mno901',
       bs_live_code: 'mno234',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '6',
@@ -85,9 +90,10 @@ export const users = [
       city: 'Seattle',
       state: 'WA',
       zip: '67890',
-      password_hash: 'pqr567',
+      password: 'pqr567',
       bs_live_code: 'pqr890',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '7',
@@ -100,9 +106,10 @@ export const users = [
       city: 'Denver',
       state: 'CO',
       zip: '78901',
-      password_hash: 'stu123',
+      password: 'stu123',
       bs_live_code: 'stu456',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '8',
@@ -115,9 +122,10 @@ export const users = [
       city: 'Dallas',
       state: 'TX',
       zip: '89012',
-      password_hash: 'vwx789',
+      password: 'vwx789',
       bs_live_code: 'vwx012',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '9',
@@ -130,9 +138,10 @@ export const users = [
       city: 'Boston',
       state: 'MA',
       zip: '90123',
-      password_hash: 'yz012',
+      password: 'yz012',
       bs_live_code: 'yz345',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '10',
@@ -145,9 +154,10 @@ export const users = [
       city: 'Phoenix',
       state: 'AZ',
       zip: '01234',
-      password_hash: '123abc',
+      password: '123abc',
       bs_live_code: '123def',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '11',
@@ -160,9 +170,10 @@ export const users = [
       city: 'Atlanta',
       state: 'GA',
       zip: '12345',
-      password_hash: '234def',
+      password: '234def',
       bs_live_code: '234ghi',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '12',
@@ -175,9 +186,10 @@ export const users = [
       city: 'Houston',
       state: 'TX',
       zip: '23456',
-      password_hash: '345ghi',
+      password: '345ghi',
       bs_live_code: '345jkl',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '13',
@@ -190,9 +202,10 @@ export const users = [
       city: 'San Diego',
       state: 'CA',
       zip: '34567',
-      password_hash: '456jkl',
+      password: '456jkl',
       bs_live_code: '456mno',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '14',
@@ -205,9 +218,10 @@ export const users = [
       city: 'Orlando',
       state: 'FL',
       zip: '45678',
-      password_hash: '567mno',
+      password: '567mno',
       bs_live_code: '567pqr',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '15',
@@ -220,9 +234,10 @@ export const users = [
       city: 'Portland',
       state: 'OR',
       zip: '56789',
-      password_hash: '678pqr',
+      password: '678pqr',
       bs_live_code: '678stu',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '16',
@@ -235,9 +250,10 @@ export const users = [
       city: 'Las Vegas',
       state: 'NV',
       zip: '67890',
-      password_hash: '789stu',
+      password: '789stu',
       bs_live_code: '789vwx',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '17',
@@ -250,9 +266,10 @@ export const users = [
       city: 'Seattle',
       state: 'WA',
       zip: '78901',
-      password_hash: '890vwx',
+      password: '890vwx',
       bs_live_code: '890yz0',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '18',
@@ -265,9 +282,10 @@ export const users = [
       city: 'Denver',
       state: 'CO',
       zip: '89012',
-      password_hash: '901yz0',
+      password: '901yz0',
       bs_live_code: '901123',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '19',
@@ -280,9 +298,10 @@ export const users = [
       city: 'Dallas',
       state: 'TX',
       zip: '90123',
-      password_hash: '012123',
+      password: '012123',
       bs_live_code: '012456',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '20',
@@ -295,9 +314,10 @@ export const users = [
       city: 'Phoenix',
       state: 'AZ',
       zip: '01234',
-      password_hash: '123456',
+      password: '123456',
       bs_live_code: '123789',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '21',
@@ -310,9 +330,10 @@ export const users = [
       city: 'Atlanta',
       state: 'GA',
       zip: '12345',
-      password_hash: '234789',
+      password: '234789',
       bs_live_code: '234012',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '22',
@@ -325,9 +346,10 @@ export const users = [
       city: 'Houston',
       state: 'TX',
       zip: '23456',
-      password_hash: '345012',
+      password: '345012',
       bs_live_code: '345345',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '23',
@@ -340,9 +362,10 @@ export const users = [
       city: 'San Diego',
       state: 'CA',
       zip: '34567',
-      password_hash: '456345',
+      password: '456345',
       bs_live_code: '456678',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '24',
@@ -355,9 +378,10 @@ export const users = [
       city: 'Orlando',
       state: 'FL',
       zip: '45678',
-      password_hash: '567678',
+      password: '567678',
       bs_live_code: '567901',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '25',
@@ -370,9 +394,10 @@ export const users = [
       city: 'Portland',
       state: 'OR',
       zip: '56789',
-      password_hash: '678901',
+      password: '678901',
       bs_live_code: '678234',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '26',
@@ -385,9 +410,10 @@ export const users = [
       city: 'Las Vegas',
       state: 'NV',
       zip: '67890',
-      password_hash: '789234',
+      password: '789234',
       bs_live_code: '789567',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '27',
@@ -400,9 +426,10 @@ export const users = [
       city: 'Seattle',
       state: 'WA',
       zip: '78901',
-      password_hash: '890567',
+      password: '890567',
       bs_live_code: '890890',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '28',
@@ -415,9 +442,10 @@ export const users = [
       city: 'Denver',
       state: 'CO',
       zip: '89012',
-      password_hash: '901890',
+      password: '901890',
       bs_live_code: '901123',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '29',
@@ -430,9 +458,10 @@ export const users = [
       city: 'Dallas',
       state: 'TX',
       zip: '90123',
-      password_hash: '012123',
+      password: '012123',
       bs_live_code: '012456',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '30',
@@ -445,9 +474,10 @@ export const users = [
       city: 'Phoenix',
       state: 'AZ',
       zip: '01234',
-      password_hash: '123456',
+      password: '123456',
       bs_live_code: '123789',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '31',
@@ -460,9 +490,10 @@ export const users = [
       city: 'Atlanta',
       state: 'GA',
       zip: '12345',
-      password_hash: '234789',
+      password: '234789',
       bs_live_code: '234012',
       default_location: '5',
+      token: 'fakeToken123123'
     },
     {
       id: '32',
@@ -475,8 +506,9 @@ export const users = [
       city: 'Houston',
       state: 'TX',
       zip: '23456',
-      password_hash: '345012',
+      password: '345012',
       bs_live_code: '345345',
       default_location: '5',
+      token: 'fakeToken123123'
     },
   ];
