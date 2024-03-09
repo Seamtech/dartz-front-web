@@ -1,0 +1,52 @@
+/* TournamentsPage.css */
+.main-content {
+    width: 100%;
+    max-width: 100%;
+    background-color: #272727;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .content-box {
+    width: 98%;
+    min-height: auto;
+    max-width: 98%;
+    color: #a18b0f;
+    background-color: #222222;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+  
+  .TournamentsSpan {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    color: #a18b0f;
+    background-color: #272726;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid #b66803;
+  }
+  
+  .TournamentsSpan:hover {
+    background-color: #000000;
+    color: #b66803;
+  }
+  
+  .TournamentsSpan.selected {
+    background-color: #b66803;
+    color: #000000;
+    border: 2.5px solid #000000;
+  }
+  
