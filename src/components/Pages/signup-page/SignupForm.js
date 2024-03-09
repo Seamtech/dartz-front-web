@@ -12,6 +12,7 @@ const SignupForm = () => {
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
+    username: Yup.string().required('Required'),
     address1: Yup.string().required('Required'),
     address2: Yup.string(),
     city: Yup.string().required('Required'),
@@ -23,11 +24,11 @@ const SignupForm = () => {
   });
   return (
   <Container>
-    <h3 className="text-center">Sign Up</h3>
     <Formik
       initialValues={{
         name: '',
         email: '',
+        username: '',
         address1: '',
         address2: '',
         city: '',
@@ -56,6 +57,7 @@ const SignupForm = () => {
         <Form noValidate onSubmit={handleSubmit}>
           <FormField name="name" label="Name" type="text" placeholder="Enter your name" />
           <FormField name="email" label="Email" type="email" placeholder="Enter email" />
+          <FormField name="username" label="Username" type="text" placeholder="Enter username" />
           <FormField name="address1" label="Address 1" type="text" placeholder="Enter address line 1" />
           <FormField name="address2" label="Address 2" type="text" placeholder="Enter address line 2 (optional)" />
           <FormField name="city" label="City" type="text" placeholder="Enter city" />

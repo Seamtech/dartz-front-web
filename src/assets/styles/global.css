@@ -18,6 +18,9 @@ body {
   font-size: 2rem; /* was 2.0em, assuming base size of 1rem */
   color: hsla(41, 88%, 61%, 0.822);
   letter-spacing: 0.2rem; /* converted from 0.2em */
+  text-decoration: underline;
+  padding-top: 1.5rem;
+  padding-bottom: .5rem;
 }
 
 .sovjet-section-heading {

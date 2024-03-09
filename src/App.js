@@ -39,7 +39,7 @@ const App = () => (
           <Route path="/logout" element={<Logout />} /> 
           <Route path="/dashboard" element={<DashboardPage />} /> 
           <Route path="/players/findplayer" element={<FindPlayerPage />} /> 
-          <Route path="/players/:id" element={<PlayerProfile />} />
+          <Route path="/players/playerProfile" element={<PlayerProfile />} />
           {/* <Route path="/chat" element={<ChatPage />} /> */}
           {/* <Route path="/tournaments" element={<TournamentsPage />} /> */}
           {/* <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} /> */}

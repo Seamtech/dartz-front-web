@@ -15,7 +15,7 @@ const LoginPage = () => {
   return (
     <main className="main-content">
       <Container className="form-container">
-        <h3>Login</h3>
+        <h3 className="sovjet-content-heading">Login</h3>
         <LoginForm />
       </Container>
     </main>

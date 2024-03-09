@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import playerService from '../../../../services/playerService'; // Ensure the import path is correct
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 const PlayerProfile = () => {
-  const { playerID } = useParams();
+  const query = useQuery();
+  const id = query.get('id');
+  const username = query.get('username');
+  
   const [profile, setProfile] = useState(null);
   const [statistics, setStatistics] = useState(null);
   const [error, setError] = useState('');
@@ -11,7 +18,14 @@ const PlayerProfile = () => {
   useEffect(() => {
     const fetchPlayerDetails = async () => {
       try {
-        const playerDetails = await playerService.getPlayerDetails(playerID);
+        // Determine search type based on what query parameter is provided
+        const searchType = id ? 'id' : 'username';
+        const searchValue = id || username;
+
+        console.log(searchType, searchValue);
+        
+        const playerDetails = await playerService.getPlayerDetails({type: searchType, value: searchValue});
+        console.log(playerDetails);
         if (playerDetails) {
           setProfile(playerDetails.profile);
           setStatistics(playerDetails.statistics);
@@ -24,8 +38,10 @@ const PlayerProfile = () => {
       }
     };
 
-    fetchPlayerDetails();
-  }, [playerID]);
+    if (id || username) {
+        fetchPlayerDetails();
+    }
+  }, [id, username]); // Depend on both 'id' and 'username'
 
   if (error) {
     return <div>{error}</div>;
@@ -38,6 +54,7 @@ const PlayerProfile = () => {
         <hr />
         <div className="player-profile">
           <h2 className="sovjet-content-heading">{profile.first_name} {profile.last_name}</h2>
+          <p>Username: {profile.username}</p>
           <p>Email: {profile.email}</p>
           <p>Mobile Number: {profile.mobile_number}</p>
           <p>State: {profile.state}</p>
