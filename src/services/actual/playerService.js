@@ -12,3 +12,4 @@ const findPlayer = async ({ type, value }) => {
 export const playerService = {
   findPlayer,
 };
+export default playerService;

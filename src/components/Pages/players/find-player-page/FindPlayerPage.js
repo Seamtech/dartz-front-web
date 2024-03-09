@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import playerService from "../../../../services/playerService"; // Ensure correct import path
 import FindPlayerForm from "./FindPlayerForm"; // Adjust import path as necessary
-import PlayerProfile from "./PlayerProfile"; // Adjust import path as necessary
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Container } from 'react-bootstrap';
 const FindPlayerPage = () => {
