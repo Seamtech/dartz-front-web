@@ -1,0 +1,52 @@
+/* General DataTable styles */
+.DataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.25rem;
+    overflow-x: auto; /* Enables horizontal scrolling on smaller devices */
+    font-family: 'Sovjet Box', sans-serif; /* Align with global font */
+  }
+  
+  .DataTable th, .DataTable td {
+    padding: 0.5rem; /* Adjusted padding */
+    text-align: center;
+    color: #FFF;
+    border: 1px solid var(--border-color); /* Using global variable for border color */
+  }
+  
+  .DataTable th {
+    background-color: #000; /* Header background using global variable */
+    color: var(--primary-color); /* Header font color using global variable */
+  }
+  
+  /* Styling for alternating rows */
+  .DataTable tr:nth-child(odd) {
+    background-color: var(--background-color); /* Odd rows will use the main background color */
+  }
+  
+  .DataTable tr:nth-child(even) {
+    background-color: #2f2f2f; /* Even rows will use a slightly lighter shade for contrast */
+  }
+  
+  .DataTable tr:hover {
+    background-color: var(--hover-background-color); /* Hover state for rows */
+    cursor: pointer;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .DataTable .detail-column {
+      display: none; /* Hides non-essential columns on smaller screens */
+    }
+  
+    .DataTable th, .DataTable td {
+      padding: 0.4rem; /* Reduces padding on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .DataTable {
+      font-size: 0.75rem; /* Reduces font size for very small screens */
+    }
+  }
+  

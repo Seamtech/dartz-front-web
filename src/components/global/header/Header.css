@@ -11,30 +11,37 @@
 }
 
 .logo {
-  max-width: 475px; /* Maximum width of the logo */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensure the img element behaves as a block for centering */
-  margin: auto; /* Center the logo horizontally */
+  max-width: 475px;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 .navbar {
-  width: 100%; /* Ensure navbar takes the full width */
-  justify-content: center; /* Center navbar items */
+  width: 100%;
+  justify-content: center;
 }
+
 .dropdown-menu {
-  background-color: var(--background-color) !important;
+  background-color: #343a40 !important;
 }
+
 .dropdown-menu .dropdown-item {
   background-color: var(--background-color);
-  color: var(--text-color); /* Change to your desired text color */
+  color: var(--text-color);
+  border: 1px solid #000; /* Adds a border to each dropdown item */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
+
+
 .dropdown-menu .dropdown-item:hover {
-  color: var(--primary-color); /* Text color on hover */
-  background-color: var(--hover-background-color); /* Background color on hover */
+  color: var(--primary-color);
+  background-color: var(--hover-background-color);
 }
+
 @media (max-width: 768px) {
   .navbar-collapse {
-    flex-basis: 100%; /* Ensure navbar items can expand fully */
+    flex-basis: 100%;
     flex-grow: 1;
   }
 
@@ -43,15 +50,17 @@
   }
 
   .navbar-toggler {
-    display: flex; /* Ensure toggle button is always visible */
-    margin: 0 auto; /* Center toggle button */
+    display: flex;
+    margin: 0 auto;
   }
+
   .logo {
-    max-width: 275px; /* Smaller logo for tablets */
+    max-width: 275px; /* Adjust the logo size for better responsiveness */
   }
 }
+
 @media (max-width: 480px) {
   .logo {
-    max-width: 275px; /* Even smaller logo for mobile phones */
+    max-width: 275px;
   }
 }

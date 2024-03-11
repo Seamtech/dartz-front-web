@@ -1,0 +1,37 @@
+.LeaderBoardsPage {
+  padding: 1.25rem; /* Standardized padding */
+  display: block;
+  width: 80% !important; /* Adjusted width */
+  margin: auto; /* Centers the leaderboard on the page */
+}
+
+@media (max-width: 768px) {
+  .LeaderBoardsPage {
+    width: 100% !important; /* Full width on smaller screens */
+    padding: 0.5rem; /* Reduced padding */
+  }
+}
+
+.LeaderBoardsPage span {
+  display: inline-block;
+  padding: 0.5rem 1rem; /* Adjusted padding */
+  margin: 0.3rem; /* Adjusted margin */
+  font-family: 'Sovjet Box', sans-serif;
+  color: #a18b0f;
+  background-color: #272726;
+  border-radius: 0.25rem; /* Softened edges */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #b66803; /* Defined border */
+}
+
+.LeaderBoardsPage span:hover {
+  background-color: #000000;
+  color: #b66803;
+}
+
+.LeaderBoardsPage span.selected {
+  background-color: #b66803;
+  color: #000000;
+  border: 2.5px solid #000000;
+}

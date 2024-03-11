@@ -476,42 +476,7 @@
     border: 2.5px solid #000000;
   }
 
-.LeaderBoardsPage {
-    padding: 20px;
-    display: block;
-    width: 80% !important;
-  }
-  
-  .LeaderBoardsPage span {
-    font-family: 'Sovjet Box';
-      display: inline-block;
-      padding: 8px 16px;
-      margin: 5px;
-      color: #a18b0f;
-      background-color: #272726;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      border: 1px solid #b66803;
-    }
-    
-  .LeaderBoardsPage span:hover {
-      background-color: #000000;
-      color:#b66803;
-    }
-    
-  .LeaderBoardsPage span.selected {
-    font-family: 'Sovjet Box Bold';
-      background-color: #b66803;
-      color:#000000;
-      border: 2.5px solid #000000;
-    }
 
-    .LeaderBoardsPage {
-      padding: 20px;
-      display: block;
-      width: 80% !important;
-    }
     
     .TournamentsSpan {
       font-family: 'Sovjet Box';

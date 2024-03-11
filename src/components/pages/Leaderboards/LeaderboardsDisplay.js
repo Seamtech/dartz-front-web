@@ -1,43 +1,59 @@
 import React from 'react';
+import DataTable from '../../global/table/DataTable'; // Adjust the import path as needed
 import { Link } from 'react-router-dom';
 
-const LeaderboardsDisplay = ({ selectedLeaderboard, sortedStatistics, usersMap }) => (
-  <div>
-    {selectedLeaderboard && (
-      <div>
-        <h3 className="sovjet-section-heading">
-          {selectedLeaderboard.Name}
-        </h3>
-        <div className="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Player</th>
-                <th>{selectedLeaderboard.Name}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedStatistics.map((statistic, index) => {
-                const user = usersMap[statistic.user_id];
-                return (
-                  <tr key={index}>
-                    <td>#</td>
-                    <td className="sovjet-text">
-                      <Link to={`/players/${user.id}`}>
-                        {user.first_name} {user.last_name} - {user.city}, {user.state}
-                      </Link>
-                    </td>
-                    <td>{statistic[selectedLeaderboard.field]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+const LeaderboardsDisplay = ({ selectedLeaderboard, leaderboardData, leaderboardTypes }) => {
+  // Generate a list of column fields to hide on mobile, excluding the selected field
+  const hideColumnsOnMobile = leaderboardTypes
+    .filter(type => type.field !== selectedLeaderboard.field)
+    .map(type => type.field);
+
+  // Dynamically generate columns based on leaderboardTypes
+  const dynamicColumns = leaderboardTypes.map(type => ({
+    field: type.field,
+    headerName: type.Name,
+    // Apply 'selected-column' class only to the selected field for styling or identification
+    className: type.field === selectedLeaderboard.field ? 'selected-column' : '',
+  }));
+
+  const columns = [
+    { field: 'rank', headerName: 'Rank', className: '' }, // Rank always shown
+    {
+      field: 'player',
+      headerName: 'Player',
+      className: '', // Player name always shown
+      renderCell: (row) => (
+        <Link to={`/players/playerProfile?id=${row.user_id}`}>
+          {row.username}
+        </Link>
+      ),
+    },
+    ...dynamicColumns,
+  ];
+
+  // Map leaderboardData to include a 'player' field for DataTable compatibility
+  const data = leaderboardData.map((item, index) => ({
+    ...item,
+    rank: index + 1,
+    player: `${item.first_name} ${item.last_name}`, // Assuming 'first_name' and 'last_name' fields exist
+  }));
+
+  return (
+    <div>
+      {selectedLeaderboard && (
+        <div>
+          <h3 className="sovjet-section-heading">{selectedLeaderboard.Name}</h3>
+          <div className="table-responsive">
+            <DataTable
+              columns={columns}
+              data={data}
+              hideColumnsOnMobile={hideColumnsOnMobile}
+            />
+          </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
+};
 
 export default LeaderboardsDisplay;

@@ -50,10 +50,10 @@ const PlayerProfile = () => {
   return (
     profile && statistics ? (
       <main className="main-content">
-        <h1 className="sovjet-page-heading">Player Profile</h1>
-        <hr />
+        <h1 className="sovjet-content-heading">Player Profile</h1>
         <div className="player-profile">
-          <h2 className="sovjet-content-heading">{profile.first_name} {profile.last_name}</h2>
+          <h2 className="sovjet-section-heading">{profile.first_name} {profile.last_name}</h2>
+          
           <p>Username: {profile.username}</p>
           <p>Email: {profile.email}</p>
           <p>Mobile Number: {profile.mobile_number}</p>

@@ -24,17 +24,17 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #000000;
 }
-a, a:visited, .link {
-  color: var(--primary-color); /* Custom text color */
-  text-decoration: underline; /* Optional: removes underline */
-  transition: color 0.3s ease; /* Smooth transition */
-}
-
-a:hover, a:focus, .link:hover, .link:focus {
-  color: var(--text-color); /* Change color on hover/focus */
-}
 
 hr {
   background-color: var(--primary-color);
   width: 75%;
+}
+a, a:visited, .link, .App-link {
+  color: var(--text-color) !important; /* Custom text color */
+  text-decoration: underline; /* Optional: adds underline */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+a:hover, a:focus, .link:hover, .link:focus, .App-link:hover, .App-link:focus {
+  color: var(--primary-color) !important; /* Change color on hover/focus */
 }

@@ -29,11 +29,6 @@ body {
   letter-spacing: 0.1rem; /* converted from 0.10em */
 }
 
-.sovjet-text, .App-link {
-  font-size: 1rem; /* was 1.0em, assuming base size of 1rem */
-  color: #a18b0f;
-  letter-spacing: 0.38rem; /* converted from 0.38em */
-}
 
 .app-container {
   display: flex;

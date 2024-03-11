@@ -6,10 +6,12 @@ import { SignupPage } from './components/pages/signup-page';
 import { LoginPage } from './components/pages/login-page';
 import Logout  from './components/user/Logout';
 import { DashboardPage } from './components/pages/dashboard-page';
-import {FindPlayerPage, PlayerProfile} from './components/pages/players/find-player-page/';
+import {FindPlayerPage, PlayerProfile} from './components/pages/players/find-player-page';
+import {RulesPage} from './components/pages/rules-page';
+import {LeaderboardsPage} from './components/pages/leaderboards';
 //import { } from './components/pages/Tournaments/TournamentsPage/TournamentsPage';
 //import TournamentDetailsPage from './components/pages/Tournaments/TournamentDetailsPage/TournamentDetailsPage'
-//import LeaderBoardsPage from './components/pages/Leaderboards/LeaderboardsPage';
+
 //import ZLeaguesPage from './components/pages/ZLeague/ZLeaguePage';
 
 
@@ -17,7 +19,6 @@ import {FindPlayerPage, PlayerProfile} from './components/pages/players/find-pla
 //import ChatPage from './components/pages/ChatPage';
 
 //import PlayerDetailPage from './components/pages/Players/PlayerProfilePage/PlayerProfilePage';
-//import RulesPage from './components/pages/RulesPage/RulesPage';
 //import './App.css';
 import './assets/styles/variables.css'
 import './assets/styles/base.css'
@@ -40,14 +41,16 @@ const App = () => (
           <Route path="/dashboard" element={<DashboardPage />} /> 
           <Route path="/players/findplayer" element={<FindPlayerPage />} /> 
           <Route path="/players/playerProfile" element={<PlayerProfile />} />
+          <Route path="/rules" element={<RulesPage />} />
+          <Route path="/leaderboards" element={<LeaderboardsPage />} /> 
           {/* <Route path="/chat" element={<ChatPage />} /> */}
           {/* <Route path="/tournaments" element={<TournamentsPage />} /> */}
           {/* <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} /> */}
           {/* <Route exact path="/players" element={<FindPlayerPage />} /> */}
           {/* <Route path="/players/:playerID" element={<PlayerDetailPage />} /> */}
           {/* <Route path="/zleagues" element={<ZLeaguesPage />} /> */}
-          {/* <Route path="/leaderboards" element={<LeaderboardsPage />} /> */}
-          {/* <Route path="/rules" element={<RulesPage />} /> */}
+
+
 
         </Routes>
       </div>

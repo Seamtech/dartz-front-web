@@ -1,8 +1,9 @@
 import React from 'react';
-
+import { Container } from 'react-bootstrap';
+import './RulesPage.css';
 const RulesPage = () => {
   return (
-    <main className="main-content">
+    <Container as="main" className="main-content">
       <section className="rules-section">
         <h2 className="sovjet-content-heading">DartZ Rules</h2>
         <div className="rules-list">
@@ -36,7 +37,7 @@ const RulesPage = () => {
             <li>DartZ will use either Spot Points or Spot Darts for handicapping.</li>
             <li>A player does not obtain a Z rating until they have played 100 tournament matches.</li>
             <li>Players without a Z rating will use a Player Rating until the minimum threshold has been met.</li>
-            <li>Players who shoot > (INSERT THRESHOLD HERE) their Player Rating in a tournament will be disqualified and denied any payouts. We understand players have good nights, but you MUST report your known ability as accurately as possible.</li>
+            <li>Players who shoot (INSERT THRESHOLD HERE) their Player Rating in a tournament will be disqualified and denied any payouts. We understand players have good nights, but you MUST report your known ability as accurately as possible.</li>
           </ul>
 
           <h3 className="sovjet-section-heading">Team Cap and Restrictions</h3>
@@ -64,7 +65,7 @@ const RulesPage = () => {
           </ul>
         </div>
       </section>
-    </main>
+      </Container>
   );
 };
 
