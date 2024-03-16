@@ -9,7 +9,7 @@ export const SocketProvider = ({ children }) => {
     useEffect(() => {
         try {
             // Initialize WebSocket connection
-            webSocketService.connect(process.env.REACT_APP_SOCKET_URL);
+            webSocketService.connect(import.meta.env.SOCKET_URL);
         } catch (error) {
             console.error("Failed to initialize WebSocket connection:", error);
         }

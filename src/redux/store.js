@@ -26,7 +26,7 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE', 'persist/PAUSE', 'persist/PERSIST', 'persist/PURGE', 'persist/REGISTER'],
       },
     }),
-  devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools in development
+  devTools: import.meta.env.NODE_ENV !== 'production', // Enable Redux DevTools in development
 });
 
 export const persistor = persistStore(store);

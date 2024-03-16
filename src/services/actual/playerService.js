@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.API_URL;
 
 // Adjusted to accept and use an object with type and value for the search
 const getPlayerDetails = async ({ type, value }) => {
