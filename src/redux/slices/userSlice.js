@@ -29,6 +29,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
+    role: 'public',
     token: null,
     isLoading: false,
     error: null,
@@ -43,7 +44,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.user = null;
-      state.isLoggedIn = false;
+      state.role = 'public';
       state.isLoading = false; // Consider resetting isLoading on logout
       state.error = null; // Resetting error state on logout can be a good idea
     },
@@ -58,7 +59,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         // Ensure action.payload contains user data structured as expected
         state.user = action.payload.user; 
-        state.isLoggedIn = true; // Optionally set isLoggedIn on successful signup
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -71,7 +71,7 @@ const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload; // Adjust if payload structure differs
-        state.isLoggedIn = true;
+        state.role = action.payload.role; // Assuming role is returned with user data
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;

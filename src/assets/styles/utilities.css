@@ -4,7 +4,7 @@
   }
   
   .margin-auto {
-    margin: auto;
+    margin: auto !important;
   }
   
   .display-flex {

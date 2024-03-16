@@ -1,0 +1,9 @@
+.nav-link, .nav-link:visited {
+    font-family: 'Sovjet Box' !important;
+    color: var(--primary-color) !important;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: var(--text-color) !important; /* Consistent hover effect for links */
+  }

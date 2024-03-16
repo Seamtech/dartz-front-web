@@ -30,11 +30,19 @@ hr {
   width: 75%;
 }
 a, a:visited, .link, .App-link {
-  color: var(--text-color) !important; /* Custom text color */
-  text-decoration: underline; /* Optional: adds underline */
+  color: var(--primary-color); /* Custom text color */
+  text-decoration: underline;
   transition: color 0.3s ease; /* Smooth transition */
 }
 
 a:hover, a:focus, .link:hover, .link:focus, .App-link:hover, .App-link:focus {
-  color: var(--primary-color) !important; /* Change color on hover/focus */
+  color: var(--primary-color); /* Change color on hover/focus */
+}
+
+label {
+  color: var(--primary-color);
+  font-family: 'Sovjet Box', sans-serif;
+  font-weight: bold;
+  font-size: .90rem;
+  display: block;
 }

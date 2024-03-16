@@ -1,0 +1,20 @@
+
+.modal-content {
+    background-color: var(--background-color) !important;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: 1000; /* Ensure it sits above other content */
+}
+.modal-header {
+    border-bottom: .2rem solid var(--border-color) !important;
+}
+.modal-footer {
+  
+  border-top: .2rem solid var(--border-color) !important;
+}
+
+.modal-body {
+  padding: 20px;
+  color: var(--text-color);
+}

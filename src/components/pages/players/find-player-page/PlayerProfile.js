@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import playerService from '../../../../services/playerService'; // Ensure the import path is correct
+import playerService from '../../../../services/playerService';
+import { Container } from 'react-bootstrap';
+import DataTable from '../../../global/table/DataTable';
 
+// Custom hook to parse the query string
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
@@ -10,67 +13,78 @@ const PlayerProfile = () => {
   const query = useQuery();
   const id = query.get('id');
   const username = query.get('username');
-  
-  const [profile, setProfile] = useState(null);
-  const [statistics, setStatistics] = useState(null);
+
+  const [playerDetails, setPlayerDetails] = useState(null);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Define the list of public properties to display
+  const publicProperties = [
+    'username', 'email', 'mobile_number', 'state',
+    'total_games_played', 'total_games_won', 'total_games_lost',
+    'ppd', 'mpd', 'z_rating', 'player_rating'
+  ];
 
   useEffect(() => {
     const fetchPlayerDetails = async () => {
       try {
-        // Determine search type based on what query parameter is provided
+        setIsLoading(true);
         const searchType = id ? 'id' : 'username';
         const searchValue = id || username;
-
-        console.log(searchType, searchValue);
         
-        const playerDetails = await playerService.getPlayerDetails({type: searchType, value: searchValue});
-        console.log(playerDetails);
-        if (playerDetails) {
-          setProfile(playerDetails.profile);
-          setStatistics(playerDetails.statistics);
+        const details = await playerService.getPlayerDetails({type: searchType, value: searchValue});
+        if (details) {
+          setPlayerDetails({ ...details.profile, ...details.statistics });
         } else {
           setError('Player not found');
         }
       } catch (err) {
         setError('An error occurred while fetching player details');
         console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     if (id || username) {
         fetchPlayerDetails();
     }
-  }, [id, username]); // Depend on both 'id' and 'username'
+  }, [id, username]);
+
+  // Filter and format the details for DataTable columns
+  const columns = publicProperties.map(prop => ({
+    field: prop,
+    headerName: prop.replace('_', ' ').replace(/\b(\w)/g, char => char.toUpperCase()), // Title Case and replace underscores
+  }));
+
+  // Prepare the data array for the DataTable
+  const data = playerDetails ? [publicProperties.reduce((acc, property) => {
+    if (playerDetails[property] !== undefined) { // Ensure the property exists in playerDetails
+      acc[property] = playerDetails[property]?.toString() || 'N/A';
+    }
+    return acc;
+  }, {})] : [];
+
+  if (isLoading) {
+    return <Container className="main-content"><div>Loading...</div></Container>;
+  }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Container className="main-content"><div>{error}</div></Container>;
   }
 
   return (
-    profile && statistics ? (
-      <main className="main-content">
-        <h1 className="sovjet-content-heading">Player Profile</h1>
-        <div className="player-profile">
-          <h2 className="sovjet-section-heading">{profile.first_name} {profile.last_name}</h2>
-          
-          <p>Username: {profile.username}</p>
-          <p>Email: {profile.email}</p>
-          <p>Mobile Number: {profile.mobile_number}</p>
-          <p>State: {profile.state}</p>
-          <h3 className="sovjet-section-heading">Player Statistics</h3>
-          <p>Total Games Played: {statistics.total_games_played}</p>
-          <p>Total Games Won: {statistics.total_games_won}</p>
-          <p>Total Games Lost: {statistics.total_games_lost}</p>
-          <p>PPD: {statistics.ppd}</p>
-          <p>MPD: {statistics.mpd}</p>
-          <p>Z Rating: {statistics.z_rating}</p>
-          <p>Player Rating: {statistics.player_rating}</p>
-        </div>
-      </main>
-    ) : (
-      <div>Loading...</div>
-    )
+    <Container className="main-content">
+      <h1 className="sovjet-page-heading">Player Profile</h1>
+      <section className="content-box">
+        <DataTable
+          columns={columns}
+          data={data}
+          hideColumnsOnMobile={[]}
+          layoutType="card"
+        />
+      </section>
+    </Container>
   );
 };
 

@@ -23,7 +23,7 @@ const SignupForm = () => {
     mobileNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid mobile number').required('Required'),
   });
   return (
-  <Container>
+  <Container className="form-container">
     <Formik
       initialValues={{
         name: '',

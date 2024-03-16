@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'; // Import useSelector hook
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-
+import './Footer.css';
 const Footer = () => {
   // Use useSelector to access the isLoggedIn part of the state
-  const isLoggedIn = useSelector((state) => state.user.token !== null);
+  const isLoggedIn = useSelector(state => Boolean(state.user.token));
 
   return (
     <Navbar fixed="bottom" bg="dark" variant="dark">
@@ -28,7 +28,7 @@ const Footer = () => {
           </>
         )}
         {/* Contact Us link always shown */}
-        <Link to="/contact" className="navbar-link mx-2">Contact Us</Link>
+        <Link to="/contact" className="navbar-link mx-2">Contact</Link>
       </Container>
     </Navbar>
   );

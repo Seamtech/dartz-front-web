@@ -1,0 +1,19 @@
+import React from 'react';
+import roleBasedAccessService from '../../../../services/roleBasedAccessService'; // Adjust the path
+
+import { FormButton } from '../../../global/forms'; // Adjust the import path as necessary
+
+const RegisterButton = ({ onRegisterClick }) => {
+    const isLoggedIn = roleBasedAccessService.isLoggedIn();
+    const hasRequiredRole = roleBasedAccessService.hasRequiredRole('player'); // Assuming 'player' is a role
+
+    if (!isLoggedIn) {
+        return <FormButton>Login / Sign Up</FormButton>;
+    } else if (isLoggedIn && hasRequiredRole) {
+        return <FormButton onClick={onRegisterClick}>Register</FormButton>;
+    } else {
+        return null; // or some indication that the user cannot register
+    }
+};
+
+export default RegisterButton;

@@ -4,43 +4,53 @@
     color: #a18b0f;
     border: 1px solid #a18b0f;
     border-radius: 5px;
-  }
-  
+    margin: 0 auto;
+}
+
   .form-container {
-    padding: 5px;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    width: 33% !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 50% !important;
     text-align: center;
+    padding-top: 1rem;
   }
   .mb-3 {
     width: 100%;
     text-align: left;
   }
   .form-label {
-    color: var(--text-color);
+    color: var(--primary-color);
+    font-family: 'Sovjet Box', sans-serif;
+    font-weight: bold;
+    font-size: .75rem;
+    display: block;
   }
   .form-control {
     background-color: var(--background-color) !important;
     border-color: var(--border-color) !important;
     color: var(--text-color) !important;
     margin-bottom: 1em;
+    font-family: 'Sovjet Box', sans-serif;
   }
   .form-control:-webkit-autofill {
     background-color: var(--background-color) !important;
+    border-color: var(--border-color) !important;
     color: var(--text-color) !important;
+    margin-bottom: 1em;
+    font-family: 'Sovjet Box', sans-serif;
 }
-  input::placeholder, select::placeholder {
 
-  }
   .form-button {
     background-color: var(--background-color) !important;
     border-color: var(--border-color) !important;
     color: var(--text-color) !important;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 
   }
   .form-button:hover {
-    background-color: var(--text-color) !important;
-    color: var(--background-color) !important;
+    background-color: var(--hover-background-color) !important;
+    color: var(--primary-color) !important;
   }
   .radio-container label:before {
     content: '';
@@ -53,18 +63,48 @@
   .radio-container input[type="radio"]:checked + label:before {
     background-color: #000;
   }
+  .checkbox-container input[type="checkbox"] {
+    display: none; /* Hide the default checkbox */
+  }
+  .checkbox-container label:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border: 2px solid #a18b0f; /* Same as your radio buttons for consistency */
+    border-radius: 4px; /* Square with slightly rounded corners */
+    vertical-align: middle;
+  }
+  .checkbox-container input[type="checkbox"]:checked + label:before {
+    background-color: #a18b0f; /* Filled color when checked */
+  }
   
   .errorMessage {
     color: red;
     margin: 5px 0;
   }
+  
 
   @media screen and (max-width: 480px) {
+    .form-container select, .form-container input, .form-container button {
+
+      margin-bottom: 15px; /* Increase spacing for touch targets */
+    }
+  
+    .form-container {
+      width: 95% !important; /* Allow some margin on the sides */
+      
+    }
+  }
+
+  @media screen and (max-width: 768px) {
     .form-container select, .form-container input, .form-container button {
       margin-bottom: 15px; /* Increase spacing for touch targets */
     }
   
     .form-container {
-      width: 90% !important; /* Allow some margin on the sides */
+
+      width: 95% !important; /* Allow some margin on the sides */
     }
   }

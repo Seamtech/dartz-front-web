@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormField from "../../../global/forms/FormField"; // Adjust the import path as needed
 import FormButton from "../../../global/forms/FormButton"; // Adjust the import path as needed
+import { Container } from 'react-bootstrap';
 
 const FindPlayerForm = ({ onSearch }) => {
   const [searchType, setSearchType] = useState("id");
@@ -34,6 +35,8 @@ const FindPlayerForm = ({ onSearch }) => {
   });
 
   return (
+    <Container className="form-container">
+              <h3 className="sovjet-section-heading">Lookup Type</h3>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -60,7 +63,6 @@ const FindPlayerForm = ({ onSearch }) => {
       {({ isSubmitting }) => (
         <Form>
           <div>
-            <label htmlFor="searchType">Search Type &nbsp;</label>
             <select
               name="searchType"
               onChange={(e) => {
@@ -90,6 +92,7 @@ const FindPlayerForm = ({ onSearch }) => {
         </Form>
       )}
     </Formik>
+    </Container>
   );
 };
 

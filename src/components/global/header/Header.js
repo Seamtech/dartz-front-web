@@ -9,32 +9,31 @@ import './Header.css';
 
 const Header = () => {
   // Use useSelector to access the isLoggedIn part of the state
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  console.log('Logged In: ' + isLoggedIn);
+  const isLoggedIn = useSelector(state => Boolean(state.user.token));
   return (
     <div className="header">
       <Logo />
-      <Navbar bg="dark" variant="dark" expand="lg" className="navbar">
+      <Navbar expand="lg" className="navbar">
         <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav" className="justify-content-center">
+        <Navbar.Collapse id="navbar-nav">
           <Nav className="nav">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/chat">Chat</NavLink>
-            <NavLink href="/players/findplayer">Find Player</NavLink>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/chat">Chat</NavLink>
+            <NavLink to="/players/findplayer">Find Player</NavLink>
             <NavDropdown title="Tournaments" items={[{ title: "Tournaments", href: "/tournaments" }, { title: "TournamentRules", href: "/tournamentrules" }]} />
             <NavDropdown title="Z Leagues" items={[{ title: "Z League", href: "/zleagues" }]} />
-            <NavLink href="/leaderboards">Leaderboards</NavLink>
-            <NavLink href="/rules">Rules</NavLink>
+            <NavLink to="/leaderboards">Leaderboards</NavLink>
+            <NavLink to="/rules">Rules</NavLink>
             {/* Conditional rendering based on isLoggedIn */}
             {!isLoggedIn ? (
               <>
-                <NavLink href="/login">Login</NavLink>
-                <NavLink href="/signup">Signup</NavLink>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/signup">Signup</NavLink>
               </>
             ) : (
               <>
-              <NavLink href="/myaccount">My Account</NavLink>
-              <NavLink href="/logout">Logout</NavLink>
+              <NavLink to="/myaccount">My Account</NavLink>
+              <NavLink to="/logout">Logout</NavLink>
               </>
             )}
           </Nav>

@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/img/logo2.png';
-import Navbar from 'react-bootstrap/Navbar';
 
 const Logo = () => (
-  <Navbar.Brand href="/">
+  <Link to="/">
     <img src={logo} alt="Logo" className="logo" />
-  </Navbar.Brand>
+  </Link>
 );
 
 export default Logo;

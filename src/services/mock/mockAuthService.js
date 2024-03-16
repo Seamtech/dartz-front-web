@@ -24,7 +24,7 @@ const login = async ({ email, password }) => {
   }
   // Return a mock response similar to what you'd expect from your real service
   console.log('success')
-  return { user: {id: user.id, email: user.email, name: user.name }, token: 'fakeTOKEN123123' };
+  return { user: {id: user.id, email: user.email, name: user.name, role: user.role }, token: 'fakeTOKEN123123' };
 };
 
 const logout = async () => {

@@ -1,6 +1,7 @@
 export const users = [
   {
     "id": 1,
+    "role": "user",
     "first_name": "Sarah",
     "last_name": "Howard",
     "username": "sarahhoward1",
@@ -18,6 +19,7 @@ export const users = [
   },
   {
     "id": 2,
+    "role": "user",
     "first_name": "Lydia",
     "last_name": "Burns",
     "username": "lydiaburns2",
@@ -35,6 +37,7 @@ export const users = [
   },
   {
     "id": 3,
+    "role": "user",
     "first_name": "Lisa",
     "last_name": "Robles",
     "username": "lisarobles3",
@@ -52,6 +55,7 @@ export const users = [
   },
   {
     "id": 4,
+    "role": "user",
     "first_name": "Mary",
     "last_name": "Chen",
     "username": "marychen4",
@@ -69,6 +73,7 @@ export const users = [
   },
   {
     "id": 6,
+    "role": "user",
     "first_name": "John",
     "last_name": "Doe",
     "username": "johndoe6",
@@ -86,6 +91,7 @@ export const users = [
   },
   {
     "id": 7,
+    "role": "user",
     "first_name": "Jane",
     "last_name": "Smith",
     "username": "janesmith7",
@@ -103,6 +109,7 @@ export const users = [
   },
   {
     "id": 8,
+    "role": "user",
     "first_name": "David",
     "last_name": "Brown",
     "username": "davidbrown8",
@@ -120,6 +127,7 @@ export const users = [
   },
   {
     "id": 9,
+    "role": "user",
     "first_name": "Emily",
     "last_name": "Johnson",
     "username": "emilyjohnson9",
@@ -137,6 +145,7 @@ export const users = [
   },
   {
     "id": 10,
+    "role": "user",
     "first_name": "Michael",
     "last_name": "Williams",
     "username": "michaelwilliams10",
@@ -154,6 +163,7 @@ export const users = [
   },
   {
     "id": 11,
+    "role": "user",
     "first_name": "Sarah",
     "last_name": "Jones",
     "username": "sarahjones11",
@@ -171,6 +181,7 @@ export const users = [
   },
   {
     "id": 12,
+    "role": "user",
     "first_name": "Matthew",
     "last_name": "Davis",
     "username": "matthewdavis12",
@@ -188,6 +199,7 @@ export const users = [
   },
   {
     "id": 13,
+    "role": "user",
     "first_name": "Jessica",
     "last_name": "Martinez",
     "username": "jessicamartinez13",
@@ -205,6 +217,7 @@ export const users = [
   },
   {
     "id": 14,
+    "role": "user",
     "first_name": "Christopher",
     "last_name": "Rodriguez",
     "username": "christopherrodriguez14",
@@ -222,6 +235,7 @@ export const users = [
   },
   {
     "id": 15,
+    "role": "user",
     "first_name": "Amanda",
     "last_name": "Garcia",
     "username": "amandagarcia15",
@@ -239,6 +253,7 @@ export const users = [
   },
   {
     "id": 16,
+    "role": "user",
     "first_name": "Daniel",
     "last_name": "Hernandez",
     "username": "danielhernandez16",
@@ -256,6 +271,7 @@ export const users = [
   },
   {
     "id": 17,
+    "role": "user",
     "first_name": "Ashley",
     "last_name": "Lopez",
     "username": "ashleylopez17",
@@ -273,6 +289,7 @@ export const users = [
   },
   {
     "id": 18,
+    "role": "user",
     "first_name": "Ryan",
     "last_name": "Gonzalez",
     "username": "ryangonzalez18",
@@ -290,6 +307,7 @@ export const users = [
   },
   {
     "id": 19,
+    "role": "user",
     "first_name": "Elizabeth",
     "last_name": "Perez",
     "username": "elizabethperez19",
@@ -307,6 +325,7 @@ export const users = [
   },
   {
     "id": 20,
+    "role": "user",
     "first_name": "Thomas",
     "last_name": "Torres",
     "username": "thomastorres20",
@@ -324,6 +343,7 @@ export const users = [
   },
   {
     "id": 21,
+    "role": "user",
     "first_name": "Megan",
     "last_name": "Ramirez",
     "username": "meganramirez21",
@@ -341,6 +361,7 @@ export const users = [
   },
   {
     "id": 22,
+    "role": "user",
     "first_name": "Justin",
     "last_name": "Sanchez",
     "username": "justinsanchez22",
@@ -358,6 +379,7 @@ export const users = [
   },
   {
     "id": 23,
+    "role": "user",
     "first_name": "Lauren",
     "last_name": "Torres",
     "username": "laurentorres23",
@@ -375,6 +397,7 @@ export const users = [
   },
   {
     "id": 24,
+    "role": "user",
     "first_name": "Brandon",
     "last_name": "Gomez",
     "username": "brandongomez24",
@@ -392,6 +415,7 @@ export const users = [
   },
   {
     "id": 25,
+    "role": "user",
     "first_name": "Rachel",
     "last_name": "Hernandez",
     "username": "rachelhernandez25",
@@ -409,6 +433,7 @@ export const users = [
   },
   {
     "id": 30,
+    "role": "user",
     "first_name": "Alex",
     "last_name": "Johnson",
     "username": "alexjohnson21",

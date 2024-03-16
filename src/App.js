@@ -1,61 +1,61 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Header, Footer } from './components/global';
-import { LandingPage } from './components/pages/landing-page';
-import { SignupPage } from './components/pages/signup-page';
-import { LoginPage } from './components/pages/login-page';
-import Logout  from './components/user/Logout';
-import { DashboardPage } from './components/pages/dashboard-page';
-import {FindPlayerPage, PlayerProfile} from './components/pages/players/find-player-page';
-import {RulesPage} from './components/pages/rules-page';
-import {LeaderboardsPage} from './components/pages/leaderboards';
-//import { } from './components/pages/Tournaments/TournamentsPage/TournamentsPage';
-//import TournamentDetailsPage from './components/pages/Tournaments/TournamentDetailsPage/TournamentDetailsPage'
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Header, Footer } from "./components/global";
+import { LandingPage } from "./components/pages/landing-page";
+import { SignupPage } from "./components/pages/signup-page";
+import { LoginPage } from "./components/pages/login-page";
+import Logout from "./components/user/Logout";
+import { DashboardPage } from "./components/pages/dashboard-page";
+import {
+  FindPlayerPage,
+  PlayerProfile,
+} from "./components/pages/players/find-player-page";
+import { RulesPage } from "./components/pages/rules-page";
+import { LeaderboardsPage } from "./components/pages/leaderboards";
+import { SocketProvider } from "./contexts/SocketContext";
+import { TournamentsPage } from "./components/pages/tournaments/tournaments-page";
+import { TournamentDetailsPage } from "./components/pages/tournaments/tournament-details-page";
+import { Container } from "react-bootstrap";
 //import ZLeaguesPage from './components/pages/ZLeague/ZLeaguePage';
-
-
 
 //import ChatPage from './components/pages/ChatPage';
 
 //import PlayerDetailPage from './components/pages/Players/PlayerProfilePage/PlayerProfilePage';
 //import './App.css';
-import './assets/styles/variables.css'
-import './assets/styles/base.css'
-import './assets/styles/utilities.css'
-import './assets/styles/global.css'
-import './assets/styles/forms.css'
-
-
+import "./assets/styles/variables.css";
+import "./assets/styles/base.css";
+import "./assets/styles/utilities.css";
+import "./assets/styles/global.css";
+import "./assets/styles/forms.css";
 
 const App = () => (
-  <div className="main-content">
+  <SocketProvider>
     <Router>
       <Header />
-      <div className="content-wrapper">
+      <Container className="app-container">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} /> 
-          <Route path="/logout" element={<Logout />} /> 
-          <Route path="/dashboard" element={<DashboardPage />} /> 
-          <Route path="/players/findplayer" element={<FindPlayerPage />} /> 
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/players/findplayer" element={<FindPlayerPage />} />
           <Route path="/players/playerProfile" element={<PlayerProfile />} />
           <Route path="/rules" element={<RulesPage />} />
-          <Route path="/leaderboards" element={<LeaderboardsPage />} /> 
+          <Route path="/leaderboards" element={<LeaderboardsPage />} />
+          <Route path="/tournaments" element={<TournamentsPage />} />
+          <Route
+            path="/tournaments/:tournamentId"
+            element={<TournamentDetailsPage />}
+          />
           {/* <Route path="/chat" element={<ChatPage />} /> */}
-          {/* <Route path="/tournaments" element={<TournamentsPage />} /> */}
-          {/* <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} /> */}
           {/* <Route exact path="/players" element={<FindPlayerPage />} /> */}
           {/* <Route path="/players/:playerID" element={<PlayerDetailPage />} /> */}
           {/* <Route path="/zleagues" element={<ZLeaguesPage />} /> */}
-
-
-
         </Routes>
-      </div>
+      </Container>
       <Footer />
     </Router>
-  </div>
+  </SocketProvider>
 );
 export default App;

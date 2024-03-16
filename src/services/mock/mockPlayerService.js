@@ -1,5 +1,4 @@
 import { users, user_statistics } from '../../data/'; // Import mock data
-console.log('Player Service is running');
 const fakeDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const getPlayerDetails = async ({ type, value }) => {

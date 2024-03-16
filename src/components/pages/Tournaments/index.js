@@ -1,2 +1,2 @@
-export { TournamentsPage } from './TournamentsPage/TournamentsPage'
-export { TournamentDetailsPage } from './TournamentDetailsPage/TournamentDetailsPage'
+export { TournamentsPage } from './tournaments-page'
+export { TournamentDetailsPage } from './tournament-details-page'
