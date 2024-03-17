@@ -45,10 +45,9 @@ const LeaderBoardsPage = () => {
 
   return (
     <main className="main-content">
-      <div className="LeaderBoardsPage">
       <h2 className="sovjet-page-heading">Leaderboards</h2>
         <div className="content-box">
-          <h2 className="sovjet-content-heading">Select Leaderboard</h2>
+          <h2 className="sovjet-content-heading">Select Type</h2>
           <LeaderboardsSelector
             leaderboardTypes={leaderboardTypes}
             selectedLeaderboard={selectedLeaderboard}
@@ -61,7 +60,6 @@ const LeaderBoardsPage = () => {
             leaderboardTypes={leaderboardTypes} // Pass leaderboardTypes as a prop
           />
         </div>
-      </div>
     </main>
   );
 };

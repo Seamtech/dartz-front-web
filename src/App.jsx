@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Header, Footer } from "./components/global";
+import { Header, Footer, CustomBreadcrumb } from "./components/global";
 import { LandingPage } from "./components/pages/landing-page";
 import { SignupPage } from "./components/pages/signup-page";
 import { LoginPage } from "./components/pages/login-page";
@@ -16,6 +16,7 @@ import { SocketProvider } from "./contexts/SocketContext";
 import { TournamentsPage } from "./components/pages/tournaments/tournaments-page";
 import { TournamentDetailsPage } from "./components/pages/tournaments/tournament-details-page";
 import { Container } from "react-bootstrap";
+import { MyAccountPage } from "./components/pages/account";
 //import ZLeaguesPage from './components/pages/ZLeague/ZLeaguePage';
 
 //import ChatPage from './components/pages/ChatPage';
@@ -32,18 +33,21 @@ const App = () => (
   <SocketProvider>
     <Router>
       <Header />
+      <CustomBreadcrumb />
       <Container className="app-container">
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/players/findplayer" element={<FindPlayerPage />} />
+          <Route path="/players/find-player" element={<FindPlayerPage />} />
           <Route path="/players/playerProfile" element={<PlayerProfile />} />
           <Route path="/rules" element={<RulesPage />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
           <Route path="/tournaments" element={<TournamentsPage />} />
+          <Route path="/account" element={<MyAccountPage />} />
           <Route
             path="/tournaments/:tournamentId"
             element={<TournamentDetailsPage />}

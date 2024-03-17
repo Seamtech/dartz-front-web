@@ -19,7 +19,7 @@ const TournamentsPage = () => {
   };
 
   return (
-    <Container className="main-content">
+    <main className="main-content">
       <h1 className="sovjet-page-heading">Upcoming Tournaments</h1>
       <section className="content-box">
         <h2 className="sovjet-content-heading">Select Type</h2>
@@ -45,7 +45,7 @@ const TournamentsPage = () => {
         {selectedType === "TripZ" && <TournamentsList tournaments={trips} />}
         {selectedType === "FourZ" && <TournamentsList tournaments={fours} />}
       </section>
-    </Container>
+    </main>
   );
 };
 

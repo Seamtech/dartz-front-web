@@ -1,39 +1,45 @@
-import React from 'react';
-import { useSelector } from 'react-redux'; // Import useSelector hook
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Logo from './Logo';
 import NavLink from './NavLink';
 import NavDropdown from './NavDropdown';
 import './Header.css';
+import { useUpdateNavHistory } from '../../../hooks';
 
 const Header = () => {
-  // Use useSelector to access the isLoggedIn part of the state
+  const [expanded, setExpanded] = useState(false); // State to manage navbar collapse
   const isLoggedIn = useSelector(state => Boolean(state.user.token));
+  useUpdateNavHistory();
+
+  const handleCollapse = () => {
+    setExpanded(false); // Collapse the navbar
+  };
+
   return (
     <div className="header">
       <Logo />
-      <Navbar expand="lg" className="navbar">
+      <Navbar expand="sm" className="navbar" expanded={expanded} onToggle={setExpanded}>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="nav">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/chat">Chat</NavLink>
-            <NavLink to="/players/findplayer">Find Player</NavLink>
-            <NavDropdown title="Tournaments" items={[{ title: "Tournaments", href: "/tournaments" }, { title: "TournamentRules", href: "/tournamentrules" }]} />
-            <NavDropdown title="Z Leagues" items={[{ title: "Z League", href: "/zleagues" }]} />
-            <NavLink to="/leaderboards">Leaderboards</NavLink>
-            <NavLink to="/rules">Rules</NavLink>
-            {/* Conditional rendering based on isLoggedIn */}
+            <NavLink to="/" onClick={handleCollapse}>Home</NavLink>
+            <NavLink to="/chat" onClick={handleCollapse}>Chat</NavLink>
+            <NavLink to="/players/find-player" onClick={handleCollapse}>Find Player</NavLink>
+            <NavDropdown title="Tournaments" items={[{ title: "Tournaments", href: "/tournaments" }, { title: "TournamentRules", href: "/tournamentrules" }]} onCollapse={handleCollapse} />
+            <NavDropdown title="Z Leagues" items={[{ title: "Z League", href: "/zleagues" }]} onCollapse={handleCollapse} />
+            <NavLink to="/leaderboards" onClick={handleCollapse}>Leaderboards</NavLink>
+            <NavLink to="/rules" onClick={handleCollapse}>Rules</NavLink>
             {!isLoggedIn ? (
               <>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/signup">Signup</NavLink>
+                <NavLink to="/login" onClick={handleCollapse}>Login</NavLink>
+                <NavLink to="/signup" onClick={handleCollapse}>Signup</NavLink>
               </>
             ) : (
               <>
-              <NavLink to="/myaccount">My Account</NavLink>
-              <NavLink to="/logout">Logout</NavLink>
+                <NavLink to="/myaccount" onClick={handleCollapse}>My Account</NavLink>
+                <NavLink to="/logout" onClick={handleCollapse}>Logout</NavLink>
               </>
             )}
           </Nav>

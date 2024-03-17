@@ -12,7 +12,7 @@ const Footer = () => {
     <Navbar fixed="bottom" bg="dark" variant="dark">
       <Container className="justify-content-center">
         <Navbar.Text>
-          &copy; {new Date().getFullYear()} DartZ
+          &copy; {new Date().getFullYear()}
         </Navbar.Text>
         {/* Conditional rendering based on isLoggedIn */}
         {!isLoggedIn ? (

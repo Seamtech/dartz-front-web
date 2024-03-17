@@ -29,3 +29,4 @@ export const useAuth = (params) => {
   // The hook could return isLoggedIn or any other info you might need
   return isLoggedIn;
 };
+export default useAuth;

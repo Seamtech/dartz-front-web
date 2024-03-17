@@ -1,0 +1,8 @@
+.tdBefore {
+    color: var(--primary-color);
+    padding-right: auto;
+}
+td.pivoted {
+    color: var(--text-color);
+    font-size: .65rem !important;
+}

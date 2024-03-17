@@ -4,9 +4,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 import userReducer from './slices/userSlice';
+import navigationReducer from './slices/navigationSlice';
 
 const rootReducer = combineReducers({
   user: userReducer,
+  breadcrumb: navigationReducer,
   // You can add other reducers here
 });
 

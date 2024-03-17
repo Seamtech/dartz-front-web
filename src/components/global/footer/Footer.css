@@ -7,3 +7,6 @@
   .nav-link:hover {
     color: var(--text-color) !important; /* Consistent hover effect for links */
   }
+  .navbar-text {
+    font-size: .70rem;
+  }
