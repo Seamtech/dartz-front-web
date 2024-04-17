@@ -30,7 +30,7 @@ const FindPlayerPage = () => {
   };
 
   return (
-      <Container className="main-content">
+      <main className="main-content">
               <h2 className="sovjet-page-heading">Find a Player</h2>
       <section className="content-box">
           <FindPlayerForm onSearch={handleSearch} />
@@ -38,7 +38,7 @@ const FindPlayerPage = () => {
             <div>No player found. Please try a different search.</div>
           ) : null}
         </section>
-      </Container>
+      </main>
   );
 };
 

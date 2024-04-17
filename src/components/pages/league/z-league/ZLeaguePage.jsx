@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { players } from "../../../data/zLeaguePlayers";
+import { players } from "../../../../data/zLeaguePlayers";
 
 const leaguesData = {
   Social: players, // Replace with the playersData array for Social

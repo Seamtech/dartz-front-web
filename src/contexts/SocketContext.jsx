@@ -1,33 +1,32 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { webSocketService } from '../services'; // Adjust the import path as needed
-
 const SocketContext = createContext();
 
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketProvider = ({ children }) => {
-    useEffect(() => {
-        try {
-            // Initialize WebSocket connection
-            webSocketService.connect(import.meta.env.SOCKET_URL);
-        } catch (error) {
-            console.error("Failed to initialize WebSocket connection:", error);
-        }
+    const [isConnected, setIsConnected] = useState(false);
 
+    useEffect(() => {
+        webSocketService.connect(import.meta.env.VITE_SOCKET_URL)
+            .then(() => {
+                if (webSocketService.isActive()) {
+                    setIsConnected(true);
+                }
+            })
+            .catch(error => console.error("WebSocket connection failed:", error));
+    
         return () => {
-            try {
-                console.log('Disconnecting from WebSocket server...');
-                webSocketService.disconnect();
-            } catch (error) {
-                console.error("Failed to disconnect WebSocket:", error);
-            }
+            webSocketService.disconnect();
         };
     }, []);
-  
+
+    // Providing both the webSocketService and the connection status
+    const value = { webSocketService, isConnected };
+
     return (
-      <SocketContext.Provider value={useSocket}>
-        {children}
-      </SocketContext.Provider>
+        <SocketContext.Provider value={value}>
+            {children}
+        </SocketContext.Provider>
     );
-  };
-  
+};

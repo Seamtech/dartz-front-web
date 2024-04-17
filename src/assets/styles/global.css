@@ -49,14 +49,14 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 100%;
+  max-width: 1920px !important;
+  margin: 0 auto;
 }
 
 .main-content {
   -webkit-overflow-scrolling: touch;
   flex: auto;
   min-height: 80vh; /* Adjust the value as needed */
-  display: flex;
   flex-grow: 1;
   flex-direction: column;
   align-items: center;
@@ -64,6 +64,7 @@ body {
   text-align: center;
   width: 100%;
   padding-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .content-box {
@@ -79,6 +80,7 @@ body {
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
+
 a {
   color: var(--link-color) !important;
   text-decoration: underline !important;
@@ -162,6 +164,7 @@ select {
     padding: 0;
     width: 100%;
     margin: 0 auto;
+    margin-top: 1rem;
     padding-bottom: 5rem;
   }
 }

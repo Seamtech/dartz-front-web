@@ -4,3 +4,4 @@ export {default as leaderboardService} from './leaderboardService';
 export {default as roleBasedAccessService} from './roleBasedAccessService';
 export {default as tournamentService} from './tournamentService';
 export {default as webSocketService} from './webSocketService';
+export {default as userService} from './userService';

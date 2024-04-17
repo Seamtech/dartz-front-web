@@ -4,7 +4,7 @@ import { Header, Footer, CustomBreadcrumb } from "./components/global";
 import { LandingPage } from "./components/pages/landing-page";
 import { SignupPage } from "./components/pages/signup-page";
 import { LoginPage } from "./components/pages/login-page";
-import Logout from "./components/user/Logout";
+import { Logout } from "./components/user";
 import { DashboardPage } from "./components/pages/dashboard-page";
 import {
   FindPlayerPage,
@@ -17,7 +17,7 @@ import { TournamentsPage } from "./components/pages/tournaments/tournaments-page
 import { TournamentDetailsPage } from "./components/pages/tournaments/tournament-details-page";
 import { Container } from "react-bootstrap";
 import { MyAccountPage } from "./components/pages/account";
-//import ZLeaguesPage from './components/pages/ZLeague/ZLeaguePage';
+import { ZLeaguePage, TravelLeaguesPage, ZChallengesPage } from './components/pages/league';
 
 //import ChatPage from './components/pages/ChatPage';
 
@@ -35,7 +35,6 @@ const App = () => (
       <Header />
       <CustomBreadcrumb />
       <Container className="app-container">
-
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -47,7 +46,10 @@ const App = () => (
           <Route path="/rules" element={<RulesPage />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
           <Route path="/tournaments" element={<TournamentsPage />} />
-          <Route path="/account" element={<MyAccountPage />} />
+          <Route path="/myaccount" element={<MyAccountPage />} />
+          <Route path="/league/z-league" element={<ZLeaguePage />} />
+          <Route path="/league/travel-leagues" element={<TravelLeaguesPage />} />
+          <Route path="/league/league-challenges" element={<ZChallengesPage />} />
           <Route
             path="/tournaments/:tournamentId"
             element={<TournamentDetailsPage />}

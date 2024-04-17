@@ -1,0 +1,4 @@
+const getTournamentById = {
+
+}
+export default getTournamentById;
