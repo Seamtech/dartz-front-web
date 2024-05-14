@@ -6,6 +6,7 @@ import TournamentRegistrationForm from "./TournamentRegistrationForm"; // Make s
 import { Container } from "react-bootstrap";
 import TournamentRegisteredPlayersList from "./TournamentRegisteredPlayersList"; // Make sure the import path is correct
 import "./TournamentDetailsPage.css";
+import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
 const TournamentDetailsPage = () => {
   const { tournamentId } = useParams();
   const [tournament, setTournament] = useState(null);
@@ -32,7 +33,7 @@ const TournamentDetailsPage = () => {
   }
 
   return (
-    <Container className="main-content">
+    <ThreeColumnLayout>
               <h1 className="sovjet-page-heading">Tournament</h1>
       <section className="content-box">
         <h2 className="sovjet-content-heading">{tournament.name}</h2>
@@ -60,7 +61,7 @@ const TournamentDetailsPage = () => {
         tournamentType={tournament.type} />
       </section>
       {/* Additional content boxes for registered teams and chat, etc. */}
-    </Container>
+      </ThreeColumnLayout>
   );
 };
 

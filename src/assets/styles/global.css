@@ -11,6 +11,12 @@ body {
   background-color: #222;
   flex:none;
 }
+.error-message {
+  color: red;
+  font-size: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
 
 .sovjet-page-heading,
 .sovjet-content-heading,
@@ -25,7 +31,7 @@ body {
   color: var(--primary-color);
   letter-spacing: 0.1em;
   text-decoration: none;
-  padding-top: 1.25rem;
+  padding-top: .75rem;
 }
 
 .sovjet-content-heading {

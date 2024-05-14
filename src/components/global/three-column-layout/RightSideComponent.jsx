@@ -1,22 +1,35 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import CollapsiblePanel from './CollapsiblePanel';
 
 const RightSideComponent = () => {
   const isLoggedIn = useSelector(state => Boolean(state.user.token));
-  
+
   return (
-    <div className=" content-box right-side-content">
-      {/* Example content based on user state */}
+    <div className="right-side-content">
+      <CollapsiblePanel title='Live Matches' panelId='live-matches'>
+        <div className='main-content-box'>
+          <ul>
+            <li>Match A vs. B - Live</li>
+            <li>Match C vs. D - Starting Soon</li>
+          </ul>
+        </div>
+      </CollapsiblePanel>
       {isLoggedIn ? (
-        <div>
-          <h4>Live Matches</h4>
-          {/* Logic to display live matches */}
-        </div>
+        <CollapsiblePanel title='Sponsor Highlights' panelId='sponsor-highlights'>
+          <div className='main-content-box'>
+            <p>Special offers from our sponsors!</p>
+          </div>
+        </CollapsiblePanel>
       ) : (
-        <div>
-          <h4>Featured Matches</h4>
-          {/* Logic to display featured matches for non-logged-in users */}
-        </div>
+        <CollapsiblePanel title='Featured Matches' panelId='featured-matches'>
+          <div className='main-content-box'>
+            <ul>
+              <li>Featured Match E vs. F</li>
+              <li>Featured Match G vs. H</li>
+            </ul>
+          </div>
+        </CollapsiblePanel>
       )}
     </div>
   );

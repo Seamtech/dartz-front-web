@@ -1,9 +1,9 @@
-// FindPlayerPage.js
 import React, { useState } from "react";
 import playerService from "../../../../services/playerService"; // Ensure correct import path
 import FindPlayerForm from "./FindPlayerForm"; // Adjust import path as necessary
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { Container } from 'react-bootstrap';
+import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout"; // Import your custom three-column layout component
+
 const FindPlayerPage = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [searchFailed, setSearchFailed] = useState(false);
@@ -12,7 +12,6 @@ const FindPlayerPage = () => {
     try {
       const result = await playerService.getPlayerDetails(searchCriteria);
       if (result && result.profile.id) {
-        // Assuming the search result includes an ID
         setSearchFailed(false);
         // Navigate using query parameters
         navigate(`/players/playerProfile?id=${result.profile.id}`);
@@ -30,15 +29,15 @@ const FindPlayerPage = () => {
   };
 
   return (
-      <main className="main-content">
-              <h2 className="sovjet-page-heading">Find a Player</h2>
-      <section className="content-box">
-          <FindPlayerForm onSearch={handleSearch} />
-          {searchFailed ? (
-            <div>No player found. Please try a different search.</div>
-          ) : null}
-        </section>
-      </main>
+    <ThreeColumnLayout>
+      <h2 className="sovjet-page-heading">Find a Player</h2>
+      {searchFailed && (
+        <div className="error-message">
+          No player found. Please try a different search.
+        </div>
+      )}
+      <FindPlayerForm onSearch={handleSearch} />
+    </ThreeColumnLayout>
   );
 };
 

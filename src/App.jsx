@@ -30,7 +30,7 @@ import "./assets/styles/global.css";
 import "./assets/styles/forms.css";
 
 const App = () => (
-  <SocketProvider>
+  <SocketProvider url={import.meta.env.VITE_SOCKET_URL}>
     <Router>
       <Header />
       <CustomBreadcrumb />

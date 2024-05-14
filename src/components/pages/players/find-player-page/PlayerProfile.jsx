@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import playerService from '../../../../services/playerService';
 import { Container } from 'react-bootstrap';
 import DataTable from '../../../global/table/DataTable';
+import ThreeColumnLayout from '../../../global/three-column-layout/ThreeColumnLayout'; 
 
 // Custom hook to parse the query string
 function useQuery() {
@@ -74,9 +75,11 @@ const PlayerProfile = () => {
   }
 
   return (
-    <Container className="main-content">
-      <h1 className="sovjet-page-heading">Player Profile</h1>
+    <ThreeColumnLayout>
+    <main className="main-content">
+    <h1 className="sovjet-page-heading">Find a Player</h1>
       <section className="content-box">
+      <h1 className="sovjet-content-heading">Player Profile</h1>
         <DataTable
           columns={columns}
           data={data}
@@ -84,7 +87,8 @@ const PlayerProfile = () => {
           layoutType="card"
         />
       </section>
-    </Container>
+    </main>
+    </ThreeColumnLayout>
   );
 };
 

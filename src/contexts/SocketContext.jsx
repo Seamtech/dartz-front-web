@@ -1,32 +1,18 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { webSocketService } from '../services'; // Adjust the import path as needed
-const SocketContext = createContext();
+import React, { createContext, useContext } from 'react';
+import { useSelector } from 'react-redux';
+import useWebSocketService from '../services/webSocketService';
 
-export const useSocket = () => useContext(SocketContext);
+const WebSocketContext = createContext(null);
 
-export const SocketProvider = ({ children }) => {
-    const [isConnected, setIsConnected] = useState(false);
+export const SocketProvider = ({ url, children }) => {
+  const isAuthenticated = useSelector(state => state.user.token !== null);
+  const { socket, subscribe, unsubscribe } = useWebSocketService(url, isAuthenticated);
 
-    useEffect(() => {
-        webSocketService.connect(import.meta.env.VITE_SOCKET_URL)
-            .then(() => {
-                if (webSocketService.isActive()) {
-                    setIsConnected(true);
-                }
-            })
-            .catch(error => console.error("WebSocket connection failed:", error));
-    
-        return () => {
-            webSocketService.disconnect();
-        };
-    }, []);
-
-    // Providing both the webSocketService and the connection status
-    const value = { webSocketService, isConnected };
-
-    return (
-        <SocketContext.Provider value={value}>
-            {children}
-        </SocketContext.Provider>
-    );
+  return (
+    <WebSocketContext.Provider value={{ socket, subscribe, unsubscribe }}>
+      {children}
+    </WebSocketContext.Provider>
+  );
 };
+
+export const useSocket = () => useContext(WebSocketContext);

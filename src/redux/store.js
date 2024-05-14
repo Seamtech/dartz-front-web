@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 
 import userReducer from './slices/userSlice';
 import navigationReducer from './slices/navigationSlice';
+import userPreferencesReducer from './slices/userPreferencesSlice';
 
 const rootReducer = combineReducers({
   user: userReducer,
   breadcrumb: navigationReducer,
+  preferences: userPreferencesReducer,
   // You can add other reducers here
 });
 
