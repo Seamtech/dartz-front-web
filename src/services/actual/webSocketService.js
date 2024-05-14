@@ -31,7 +31,7 @@ const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInte
           retryCountRef.current += 1;
         } else if (retryCountRef.current >= maxRetryAttempts) {
           console.error(`Maximum retry attempts (${maxRetryAttempts}) reached. Giving up.`);
-          // You can add UI notifications here to inform the user about the connection issue
+          // can add UI notifications here to inform the user about the connection issue
         }
       });
 
