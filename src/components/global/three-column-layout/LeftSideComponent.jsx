@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import CollapsiblePanel from "../../global/three-column-layout/CollapsiblePanel";
 
 const LeftSideComponent = () => {
-  const isLoggedIn = useSelector((state) => Boolean(state.user.token));
+  const isLoggedIn = useSelector((state) => Boolean(state.user.refreshToken));
   const [isCollapsed, setIsCollapsed] = useState(false); // State to manage collapse status
 
   const toggleCollapse = () => {

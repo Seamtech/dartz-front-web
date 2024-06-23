@@ -11,7 +11,7 @@ const roles = {
 const roleBasedAccessService = {
   isLoggedIn() {
     const { user } = store.getState();
-    return Boolean(user && user.token);
+    return Boolean(user && user.refreshToken);
   },
 
   hasRequiredRole(requiredRole) {

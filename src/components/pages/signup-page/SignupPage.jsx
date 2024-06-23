@@ -5,7 +5,7 @@ import SignupForm from "./SignupForm"; // Update with the correct path
 import { Container } from "react-bootstrap";
 
 const SignupPage = () => {
-  const isLoggedIn = useSelector((state) => Boolean(state.user.token));
+  const isLoggedIn = useSelector((state) => Boolean(state.user.refreshToken));
 
   if (isLoggedIn) {
     return <Navigate to="/dashboard" replace />; // Redirect to dashboard

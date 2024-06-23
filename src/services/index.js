@@ -5,3 +5,4 @@ export {default as roleBasedAccessService} from './roleBasedAccessService';
 export {default as tournamentService} from './tournamentService';
 export {default as webSocketService} from './webSocketService';
 export {default as userService} from './userService';
+export {default as pingService} from './pingService';

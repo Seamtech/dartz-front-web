@@ -10,7 +10,7 @@ import { useUpdateNavHistory } from "../../../hooks";
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false); // State to manage navbar collapse
-  const isLoggedIn = useSelector((state) => Boolean(state.user.token));
+  const isLoggedIn = useSelector((state) => Boolean(state.user.refreshToken));
   useUpdateNavHistory();
 
   const handleCollapse = () => {

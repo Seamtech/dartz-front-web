@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import playerService from "../../../../services/playerService"; // Ensure correct import path
-import FindPlayerForm from "./FindPlayerForm"; // Adjust import path as necessary
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout"; // Import your custom three-column layout component
+import playerService from "../../../../services/playerService";
+import FindPlayerForm from "./FindPlayerForm";
+import { useNavigate } from "react-router-dom";
+import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
 
 const FindPlayerPage = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const [searchFailed, setSearchFailed] = useState(false);
 
   const handleSearch = async (searchCriteria) => {
     try {
       const result = await playerService.getPlayerDetails(searchCriteria);
-      if (result && result.profile.id) {
+      if (result && result.length > 0) {
         setSearchFailed(false);
-        // Navigate using query parameters
-        navigate(`/players/playerProfile?id=${result.profile.id}`);
-      } else if (result && result.profile.username) {
-        // a search can also provide a username
-        setSearchFailed(false);
-        navigate(`/players/playerProfile?username=${result.profile.username}`);
+        const player = result[0];
+        if (player.id) {
+          navigate(`/players/playerProfile?id=${player.id}`);
+        } else if (player.username) {
+          navigate(`/players/playerProfile?username=${player.username}`);
+        }
       } else {
         setSearchFailed(true);
       }

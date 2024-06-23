@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import './Footer.css';
 const Footer = () => {
   // Use useSelector to access the isLoggedIn part of the state
-  const isLoggedIn = useSelector(state => Boolean(state.user.token));
+  const isLoggedIn = useSelector(state => Boolean(state.user.refreshToken));
 
   return (
     <Navbar fixed="bottom" bg="dark" variant="dark">

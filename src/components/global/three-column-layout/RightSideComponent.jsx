@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import CollapsiblePanel from './CollapsiblePanel';
 
 const RightSideComponent = () => {
-  const isLoggedIn = useSelector(state => Boolean(state.user.token));
+  const isLoggedIn = useSelector(state => Boolean(state.user.refreshToken));
 
   return (
     <div className="right-side-content">

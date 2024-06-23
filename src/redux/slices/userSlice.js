@@ -1,64 +1,100 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import authService from "../../services/authService";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {jwtDecode} from 'jwt-decode';
+import authService from '../../services/authService';
+
+const extractUserInfo = (token) => {
+  const decoded = jwtDecode(token);
+  return {
+    id: decoded.id,
+    username: decoded.username,
+    email: decoded.email,
+    role: decoded.role,
+  };
+};
 
 export const signupUser = createAsyncThunk(
-  "user/signup",
+  'user/signup',
   async (userData, { rejectWithValue }) => {
     try {
       const response = await authService.signup(userData);
-      return response.data; // Ensure this matches your backend response structure
+      return { message: response.message }; // Assume response includes a success message
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const loginUser = createAsyncThunk(
-  "user/login",
-  async (userData, { dispatch, rejectWithValue }) => {
+  'user/login',
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await authService.login(userData);
-      dispatch(userSlice.actions.setToken(response.token)); // Set token in Redux state
-      return response;
+      const { refreshToken } = response;
+      const user = extractUserInfo(refreshToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      return { user, refreshToken };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.message);
     }
   }
 );
+
+export const logoutUser = createAsyncThunk(
+  'user/logout',
+  async (_, { rejectWithValue }) => {
+    const refreshToken = localStorage.getItem('refreshToken'); // Get refresh token from local storage
+    try {
+      await authService.logout(refreshToken);
+      localStorage.removeItem('refreshToken');
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
     user: null,
+    userId: null, // Added userId to initialState
     role: 'public',
-    token: null,
+    refreshToken: null,
     isLoading: false,
     error: null,
   },
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload;
+      state.accessToken = action.payload; // This won't store in localStorage, just state
     },
-    clearToken: (state) => {
-      state.token = null;
+    setRefreshToken: (state, action) => {
+      state.refreshToken = action.payload;
+      localStorage.setItem('refreshToken', action.payload);
+    },
+    clearTokens: (state) => {
+      state.accessToken = null;
+      state.refreshToken = null;
+      localStorage.removeItem('refreshToken');
     },
     logout: (state) => {
-      state.token = null;
+      state.accessToken = null;
+      state.refreshToken = null;
       state.user = null;
+      state.userId = null; // Clear userId on logout
       state.role = 'public';
-      state.isLoading = false; // Consider resetting isLoading on logout
-      state.error = null; // Resetting error state on logout can be a good idea
+      state.isLoading = false;
+      state.error = null;
+      localStorage.removeItem('refreshToken');
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signupUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null; // Optionally clear error on new signup attempt
+        state.error = null;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        // Ensure action.payload contains user data structured as expected
-        state.user = action.payload.user; 
+        state.message = action.payload.message;
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -70,15 +106,37 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload; // Adjust if payload structure differs
-        state.role = action.payload.role; // Assuming role is returned with user data
+        state.user = action.payload.user;
+        state.userId = action.payload.user.id; // Set userId from payload
+        state.refreshToken = action.payload.refreshToken;
+        state.role = action.payload.user.role;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Unable to login";
+        state.error = action.payload || 'Unable to login';
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoading = false;
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.user = null;
+        state.userId = null; // Clear userId on logout
+        state.role = 'public';
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.user = null;
+        state.userId = null; // Clear userId on logout
+        state.role = 'public';
+        state.error = action.payload;
       });
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, setToken, setRefreshToken, clearTokens } = userSlice.actions;
 export default userSlice.reducer;

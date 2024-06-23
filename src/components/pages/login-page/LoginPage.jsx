@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'; // Import useSelector hook
 
 
 const LoginPage = () => {
-  const isLoggedIn = useSelector(state => Boolean(state.user.token));
+  const isLoggedIn = useSelector(state => Boolean(state.user.refreshToken));
   if (isLoggedIn) {
     return <Navigate to="/dashboard" replace />; // Redirect to dashboard
   }

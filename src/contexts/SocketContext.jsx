@@ -5,7 +5,7 @@ import useWebSocketService from '../services/webSocketService';
 const WebSocketContext = createContext(null);
 
 export const SocketProvider = ({ url, children }) => {
-  const isAuthenticated = useSelector(state => state.user.token !== null);
+  const isAuthenticated = useSelector(state => state.user.refreshToken !== null);
   const { socket, subscribe, unsubscribe } = useWebSocketService(url, isAuthenticated);
 
   return (
