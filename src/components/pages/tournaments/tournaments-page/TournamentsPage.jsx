@@ -94,10 +94,8 @@ const TournamentsPage = () => {
                         <option value="TripZ">TripZ</option>
                         <option value="FourZ">FourZ</option>
                     </select>
-                </section>
-                <section className="content-box">
                     {/* Display selected tournament type */}
-                    <h2 className="sovjet-section-heading">{selectedType}</h2>
+                    <h3 className="sovjet-section-heading">{selectedType}</h3>
                     {/* Render list of tournaments based on selected type */}
                     <TournamentsList tournaments={filteredTournaments} />
                 </section>

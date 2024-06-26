@@ -1,45 +1,56 @@
 /* General table styles */
 .DataTable {
-  width: auto;
-  margin-top: 1rem !important;
-  margin-bottom: 2rem !important;
-  margin: 0 auto;
-  font-family: "Sovjet Box", sans-serif; /* Align with the global font */
-  padding: 2rem;
+  width: 97%;
+  margin: 0 auto .5rem auto;
+  font-family: sans-serif; /* Align with the global font */
+  border-collapse: separate;
+  border-spacing: 0rem .1rem;
 }
 
-.DataTable th {
-    font-size: 1rem; /* Adjusted font size */
-    padding: 0.5rem; /* Adjusted padding */
-    text-align: center;
-    color: var(--primary-color); /* Header font color using global variable */
-    border: 1px solid var(--border-color) !important; /* Using global variable for border color */
-}
-.DataTable td {
-    font-size: .75rem;
-  padding: 0.5rem; /* Adjusted padding */
+.DataTable thead th {
+  background-color: #2b2929; /* Header background color */
+  font-size: .85rem; /* Adjusted font size */
   text-align: center;
-  color: var(--text-color);
-  border: 1px solid var(--border-color) !important; /* Using global variable for border color */
+  color: var(--primary-color) !important; /* Header font color using global variable */  
+  font-family: 'Sovjet Box', sans-serif; /* Header font family */
+  border-collapse: separate;
+  border-spacing: 0rem .1rem;
+  border: 1px solid #000000; /* Border color */
 }
 
-.DataTable th {
-  background-color: #000; /* Header background using global variable */
-  color: var(--primary-color); /* Header font color using global variable */
+.DataTable td {
+  font-size: 0.65rem; /* Adjusted font size */
+  padding: .35rem .15rem; /* Adjusted padding */
+  text-align: center;
+  background-color: #1f1f1f; /* Default cell background */
+  border: .10rem solid #000000; /* Border color */
+}
+.DataTable td:first-child {
+  border-top-left-radius: 0.25rem; /* Rounded corners for first cell */
+  border-bottom-left-radius: 0.25rem; /* Rounded corners for first cell */
+}
+
+.DataTable td:last-child {
+  border-top-right-radius: 0.25rem; /* Rounded corners for last cell */
+  border-bottom-right-radius: 0.25rem; /* Rounded corners for last cell */
 }
 
 /* Styling for alternating rows */
-.DataTable tr:nth-child(odd) {
-  background-color: var(
-    --background-color
-  ); /* Odd rows will use the main background color */
+.DataTable tr:nth-child(odd) td {
+  background-color: #3f3c3c; /* Odd cards will use the main background color */
 }
 
-.DataTable tr:nth-child(even) {
-  background-color: #2f2f2f; /* Even rows will use a slightly lighter shade for contrast */
+.DataTable tr:nth-child(even) td {
+  background-color: #2f2f2f; /* Odd cards will use the main background color */
 }
 
-.DataTable tr:hover {
+.DataTable tr .tdBefore {
+  color: var(--primary-color);
+  font-family: 'Sovjet Box', sans-serif;
+  font-size: .85rem;
+}
+
+.DataTable tr:hover td {
   background-color: var(--hover-background-color); /* Hover state for rows */
   cursor: pointer;
 }
@@ -52,44 +63,43 @@
   text-overflow: ellipsis;
   gap: 0.25rem;
   width: 95%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card {
-  width: auto;
+  width: 100%;
   margin: 0 auto;
   background-color: #222222 !important;
-  transition: background-color 0.3s; /* Smooth transition for hover */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover */
+}
+
+.card:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
 }
 
 /* Alternating background colors for cards */
-
-.card-row:hover {
-  background-color: var(
-    --hover-background-color
-  ) !important; /* Hover state for cards */
-}
-
 .card-row {
   justify-content: space-between;
-  border-radius: 1rem;
   display: flex;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-bottom: 1px solid var(--border-color); /* Adds a border to each card-row for separation */
+  padding: 0.4rem 0.5rem;
   color: var(--text-color); /* Text color */
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover */
 }
+
 .card-row:nth-of-type(odd) {
-  background-color: var(
-    --background-color
-  ); /* Odd cards will use the main background color */
+  background-color: #3f3c3c; /* Odd cards will use the main background color */
 }
 
 .card-row:nth-of-type(even) {
   background-color: #2f2f2f; /* Even cards will use a slightly darker shade for contrast */
 }
-.card-row:last-child {
+
+.card-row:hover {
+  background-color: var(--hover-background-color) !important; /* Hover state for cards */
+  transform: translateY(-2px); /* Slight lift on hover */
 }
 
 .card-row-header {
@@ -114,7 +124,6 @@
     width: 100%; /* Adjusts width to 100% for smaller screens */
   }
   .card {
-    font-size: 0.75rem !important;
     width: 100%; /* Adjusts width to 100% for smaller screens */
   }
   .card-row {
@@ -127,7 +136,7 @@
   .card-layout,
   .DataTable {
     padding: 0;
-    width: 100%; /* Adjusts width to 100% for very small screens */
+    width: 97%; /* Adjusts width to 100% for very small screens */
   }
   .card-row {
     padding: 0.1rem;
@@ -135,10 +144,12 @@
   .card-row-header {
     padding-left: 0.25rem;
     padding-top: 0.1rem;
+    font-size: .85rem;
   }
   .card-row-data {
     padding-left: 0.25rem;
     padding-bottom: 0.1rem;
     padding-right: 0.25rem;
+    font-size: 0.75rem;
   }
 }

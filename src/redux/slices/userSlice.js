@@ -9,6 +9,7 @@ const extractUserInfo = (token) => {
     username: decoded.username,
     email: decoded.email,
     role: decoded.role,
+    profileId: decoded.profileId,
   };
 };
 
@@ -57,6 +58,7 @@ const userSlice = createSlice({
   initialState: {
     user: null,
     userId: null, // Added userId to initialState
+    profileId: null, // Added profileId to initialState
     role: 'public',
     refreshToken: null,
     isLoading: false,
@@ -80,6 +82,7 @@ const userSlice = createSlice({
       state.refreshToken = null;
       state.user = null;
       state.userId = null; // Clear userId on logout
+      state.profileId = null; // Clear profileId on logout
       state.role = 'public';
       state.isLoading = false;
       state.error = null;
@@ -108,6 +111,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.userId = action.payload.user.id; // Set userId from payload
+        state.profileId = action.payload.user.profileId; // Set profileId from payload
         state.refreshToken = action.payload.refreshToken;
         state.role = action.payload.user.role;
       })
@@ -124,6 +128,7 @@ const userSlice = createSlice({
         state.refreshToken = null;
         state.user = null;
         state.userId = null; // Clear userId on logout
+        state.profileId = null; // Clear profileId on logout
         state.role = 'public';
       })
       .addCase(logoutUser.rejected, (state, action) => {
@@ -132,6 +137,7 @@ const userSlice = createSlice({
         state.refreshToken = null;
         state.user = null;
         state.userId = null; // Clear userId on logout
+        state.profileId = null; // Clear profileId on logout
         state.role = 'public';
         state.error = action.payload;
       });

@@ -31,7 +31,8 @@ body {
   color: var(--primary-color);
   letter-spacing: 0.1em;
   text-decoration: none;
-  padding-top: .75rem;
+  padding-top: 1.25rem;
+  padding-bottom: 0.5rem;
 }
 
 .sovjet-content-heading {
@@ -44,9 +45,11 @@ body {
 }
 
 .sovjet-section-heading {
-  font-size: 1.35rem; /* was 1.5em, assuming base size of 1rem */
+  font-size: 1.25rem; /* was 1.5em, assuming base size of 1rem */
   color: #8b6129;
   letter-spacing: 0.1rem; /* converted from 0.10em */
+  padding-top: 1.25rem;
+  padding-bottom: 0.5rem;
 }
 
 .app-container {

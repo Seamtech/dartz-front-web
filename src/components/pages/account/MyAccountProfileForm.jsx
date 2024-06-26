@@ -8,7 +8,6 @@ import myAccountService from '../../../services/myAccountService';
 
 const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
   const userId = useSelector((state) => state.user.userId); // Ensure the path to userId is correct
-  const [formError, setFormError] = useState({});
   const [generalError, setGeneralError] = useState('');
   const [editState, setEditState] = useState({
     username: false,
@@ -18,6 +17,7 @@ const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
     address2: false,
     city: false,
     state: false,
+    zip: false,
     bsLiveCode: false,
   });
 
@@ -29,6 +29,7 @@ const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
     address2: userInfo.address2 || '',
     city: userInfo.city || '',
     state: userInfo.state || '',
+    zip: userInfo.zip || '',
     bsLiveCode: userInfo.bsLiveCode || '',
   };
 
@@ -40,27 +41,32 @@ const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
     address2: Yup.string().nullable(),
     city: Yup.string().nullable(),
     state: Yup.string().nullable(),
+    zip: Yup.string().nullable(),
     bsLiveCode: Yup.string().nullable(),
   });
 
+  const getChangedData = (initialValues, values) => {
+    const changedData = {};
+    Object.keys(values).forEach(key => {
+      if (initialValues[key] !== values[key]) {
+        changedData[key] = values[key];
+      }
+    });
+    return changedData;
+  };
+
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    setFormError({});
     setGeneralError('');
-    const updateData = { ...values, userId: Number(userId) };
+    const changedData = getChangedData(initialValues, values);
 
-    // Check if values have changed
-    const hasChanged = Object.keys(initialValues).some(key => initialValues[key] !== values[key]);
-
-    if (!hasChanged) {
+    if (Object.keys(changedData).length === 0) {
       setGeneralError('No changes detected.');
       setSubmitting(false);
       return;
     }
 
-    console.log('Sending profile update request:', updateData);
-
     try {
-      await myAccountService.updateProfile(updateData);
+      await myAccountService.updateProfile({ ...changedData, userId: Number(userId) });
       onSuccess('Profile updated successfully');
       onClose();
     } catch (error) {
@@ -80,11 +86,7 @@ const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ isSubmitting, errors }) => (
         <Form>
           {generalError && <div className="alert alert-danger">{generalError}</div>}

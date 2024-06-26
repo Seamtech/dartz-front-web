@@ -28,7 +28,7 @@ const LeaderboardsDisplay = ({
       headerName: "Player",
       className: "", // Player name always shown
       renderCell: (row) => (
-        <Link to={`/players/playerProfile?id=${row.user_id}`}>
+        <Link to={`/players/playerProfile?id=${row.userId}`}>
           {row.username}
         </Link>
       ),
@@ -40,7 +40,7 @@ const LeaderboardsDisplay = ({
   const data = leaderboardData.map((item, index) => ({
     ...item,
     rank: index + 1,
-    player: `${item.first_name} ${item.last_name}`, // Assuming 'first_name' and 'last_name' fields exist
+    player: `${item.username}`, // Assuming 'username' field exists
   }));
 
   return (
@@ -53,6 +53,7 @@ const LeaderboardsDisplay = ({
               columns={columns}
               data={data}
               hideColumnsOnMobile={hideColumnsOnMobile}
+              layoutType="card"
             />
           </div>
         </div>

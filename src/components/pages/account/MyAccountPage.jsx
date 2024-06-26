@@ -3,14 +3,13 @@ import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import DataTable from '../../global/table/DataTable';
 import ThreeColumnLayout from '../../global/three-column-layout/ThreeColumnLayout';
-import playerService from '../../../services/playerService';
+import myAccountService from '../../../services/myAccountService';
 import GlobalModal from '../../global/modal/GlobalModal';
 import MyAccountProfileForm from './MyAccountProfileForm';
 import MyAccountPasswordForm from './MyAccountPasswordForm';
 import FormButton from '../../global/forms/FormButton';
-
 const MyAccountPage = () => {
-  const userId = useSelector((state) => state.user.userId); // Adjust according to your state structure
+  const profileId = useSelector((state) => state.user.profileId);
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -21,30 +20,22 @@ const MyAccountPage = () => {
   const fetchUserDetails = useCallback(async () => {
     try {
       setIsLoading(true);
-      const details = await playerService.getPlayerDetails({ type: 'id', value: userId });
-      if (details && details.length > 0) {
-        const user = details[0];
-        setUserInfo({
-          userId: user.id,
-          username: user.username,
-          ...user.userProfile,
-          email: user.email,
-          ...user.userStatistics,
-        });
-      }
+      const details = await myAccountService.getMyProfile();
+      setUserInfo(details);
     } catch (err) {
       setError('An error occurred while fetching user details');
-      console.error(err);
+      console.error('Fetch user details error:', err);
     } finally {
       setIsLoading(false);
     }
-  }, [userId]);
+  }, []);
 
   useEffect(() => {
-    if (userId) {
+    if (userInfo === null) {
+      console.log('Fetching user details...')
       fetchUserDetails();
     }
-  }, [userId, fetchUserDetails]);
+  }, []); 
 
   const profileColumns = [
     { field: 'username', headerName: 'Username' },
@@ -56,6 +47,7 @@ const MyAccountPage = () => {
     { field: 'address2', headerName: 'Address 2' },
     { field: 'city', headerName: 'City' },
     { field: 'state', headerName: 'State' },
+    { field: 'zip', headerName: 'ZIP Code' },
     { field: 'bsLiveCode', headerName: 'Bullshooter Code' },
   ];
 
@@ -64,7 +56,7 @@ const MyAccountPage = () => {
     { field: 'totalGamesWon', headerName: 'Total Games Won' },
     { field: 'totalGamesLost', headerName: 'Total Games Lost' },
     { field: 'ppd', headerName: 'PPD' },
-    { field: 'mpd', headerName: 'MPD' },
+    { field: 'mpr', headerName: 'MPR' },
     { field: 'zRating', headerName: 'Z Rating' },
     { field: 'playerRating', headerName: 'Player Rating' },
   ];
@@ -81,7 +73,7 @@ const MyAccountPage = () => {
 
   const handleSuccess = (message) => {
     setSuccessMessage(message);
-    fetchUserDetails(); // Refresh user info on success
+    fetchUserDetails();
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
@@ -105,6 +97,7 @@ const MyAccountPage = () => {
   }
 
   return (
+    
     <ThreeColumnLayout>
       <main className="main-content">
         <h1 className="sovjet-page-heading">My Account</h1>

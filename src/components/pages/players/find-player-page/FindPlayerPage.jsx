@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import playerService from "../../../../services/playerService";
 import FindPlayerForm from "./FindPlayerForm";
 import { useNavigate } from "react-router-dom";
 import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
+import playerService from "../../../../services/playerService";
 
 const FindPlayerPage = () => {
   const navigate = useNavigate();
@@ -14,11 +14,7 @@ const FindPlayerPage = () => {
       if (result && result.length > 0) {
         setSearchFailed(false);
         const player = result[0];
-        if (player.id) {
-          navigate(`/players/playerProfile?id=${player.id}`);
-        } else if (player.username) {
-          navigate(`/players/playerProfile?username=${player.username}`);
-        }
+        navigate(`/players/playerProfile`, { state: { player } });
       } else {
         setSearchFailed(true);
       }

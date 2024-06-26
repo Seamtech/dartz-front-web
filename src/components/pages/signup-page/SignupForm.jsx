@@ -47,7 +47,7 @@ const SignupForm = () => {
           mobileNumber: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { setSubmitting, setErrors, resetForm }) => {
           setErrorMessage(''); // Clear previous errors
           try {
             await dispatch(signupUser(values)).unwrap();
@@ -56,26 +56,32 @@ const SignupForm = () => {
             navigate('/login'); // Navigate to the login page after successful signup
           } catch (error) {
             console.error('Signup failed:', error);
-            setErrorMessage(error || 'Signup failed. Please try again.');
+
+            // Handle field-specific errors
+            if (error.field) {
+              setErrors({ [error.field]: error.message });
+            } else {
+              setErrorMessage(error.message || 'Signup failed. Please try again.');
+            }
           } finally {
             setSubmitting(false);
           }
         }}
       >
-        {({ handleSubmit, isSubmitting }) => (
+        {({ handleSubmit, isSubmitting, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <FormField name="firstName" label="First Name" type="text" placeholder="Enter your first name" />
-            <FormField name="lastName" label="Last Name" type="text" placeholder="Enter your last name" />
-            <FormField name="email" label="Email" type="email" placeholder="Enter email" />
-            <FormField name="username" label="Username" type="text" placeholder="Enter username" />
-            <FormField name="address1" label="Address 1" type="text" placeholder="Enter address line 1" />
-            <FormField name="address2" label="Address 2" type="text" placeholder="Enter address line 2 (optional)" />
-            <FormField name="city" label="City" type="text" placeholder="Enter city" />
-            <FormField name="state" label="State" type="text" placeholder="Enter state" />
-            <FormField name="zip" label="ZIP Code" type="text" placeholder="Enter ZIP code" />
-            <FormField name="bsLiveCode" label="BS Live Code" type="text" placeholder="Enter BS Live code" />
-            <FormField name="password" label="Password" type="password" placeholder="Password" />
-            <FormField name="mobileNumber" label="Mobile Number" type="text" placeholder="Enter your mobile number" />
+            <FormField name="firstName" label="First Name" type="text" placeholder="Enter your first name" error={errors.firstName} />
+            <FormField name="lastName" label="Last Name" type="text" placeholder="Enter your last name" error={errors.lastName} />
+            <FormField name="email" label="Email" type="email" placeholder="Enter email" error={errors.email} />
+            <FormField name="username" label="Username" type="text" placeholder="Enter username" error={errors.username} />
+            <FormField name="address1" label="Address 1" type="text" placeholder="Enter address line 1" error={errors.address1} />
+            <FormField name="address2" label="Address 2" type="text" placeholder="Enter address line 2 (optional)" error={errors.address2} />
+            <FormField name="city" label="City" type="text" placeholder="Enter city" error={errors.city} />
+            <FormField name="state" label="State" type="text" placeholder="Enter state" error={errors.state} />
+            <FormField name="zip" label="ZIP Code" type="text" placeholder="Enter ZIP code" error={errors.zip} />
+            <FormField name="bsLiveCode" label="BS Live Code" type="text" placeholder="Enter BS Live code" error={errors.bsLiveCode} />
+            <FormField name="password" label="Password" type="password" placeholder="Password" error={errors.password} />
+            <FormField name="mobileNumber" label="Mobile Number" type="text" placeholder="Enter your mobile number" error={errors.mobileNumber} />
             <FormButton variant="primary" type="submit" disabled={isSubmitting}>
               Submit
             </FormButton>
