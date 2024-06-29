@@ -1,4 +1,4 @@
-import { store } from '../redux/store'; // Adjust the import path as needed
+import { store } from '../../redux/store'; // Adjust the import path as needed
 
 const roles = {
   public: 0,

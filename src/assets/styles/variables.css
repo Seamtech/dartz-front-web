@@ -6,6 +6,7 @@
     --hover-background-color: #524d42;
     --border-color: #b66803;
     --link-color: #ff6600;
+    --font-family: "Sovjet Box", sans-serif;
 
       /* Responsive breakpoints */
   --breakpoint-sm: 480px;

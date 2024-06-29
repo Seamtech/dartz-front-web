@@ -15,7 +15,6 @@
         min-height: auto;
         max-width: 100%;
         color: var(--text-color);
-        background-color: #222222;
         margin: 0 auto;
         padding: 1rem;
         border-radius: 1.5rem;
@@ -26,6 +25,7 @@
         width: 100%;
         height: auto;
         padding-top: 1.25rem;
+        
       }
       .right-side-content {
         width: 100%;
@@ -35,16 +35,21 @@
       }
       .collapsible-panel {
         width: 100%;
+        background-color: #222;
       }
       
       .collapsible-content-button {
         border-bottom:var(--border-color) 1px outset;
         border-top: var(--text-color) 1px inset;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
         width: 100%;
-        background-color: transparent;
+        font-family: var(--font-family);
+        letter-spacing: .2rem;
+        background-color: #222;
         color: var(--primary-color);
         padding: .25rem 1rem;
-        text-align: left;
+        text-align: center;
         display: block;
         transition: all 0.3s ease;
         cursor: pointer;

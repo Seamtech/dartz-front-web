@@ -1,4 +1,4 @@
-import apiInstance from './api/apiService';
+import apiInstance from '../api/apiService';
 
 const signup = async (userData) => {
   try {

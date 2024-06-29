@@ -12,7 +12,8 @@
   font-size: .85rem; /* Adjusted font size */
   text-align: center;
   color: var(--primary-color) !important; /* Header font color using global variable */  
-  font-family: 'Sovjet Box', sans-serif; /* Header font family */
+  font-family: var(--font-family); /* Header font family using global variable */
+  letter-spacing: .15rem;
   border-collapse: separate;
   border-spacing: 0rem .1rem;
   border: 1px solid #000000; /* Border color */
@@ -38,6 +39,7 @@
 /* Styling for alternating rows */
 .DataTable tr:nth-child(odd) td {
   background-color: #3f3c3c; /* Odd cards will use the main background color */
+  color: #ff810b;
 }
 
 .DataTable tr:nth-child(even) td {

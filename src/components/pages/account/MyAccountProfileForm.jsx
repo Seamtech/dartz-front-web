@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormField from '../../global/forms/FormField';
 import FormButton from '../../global/forms/FormButton';
-import myAccountService from '../../../services/myAccountService';
+import {myAccountService} from '../../../services/user/myAccountService';
 
 const MyAccountProfileForm = ({ userInfo, onClose, onSuccess }) => {
   const userId = useSelector((state) => state.user.userId); // Ensure the path to userId is correct

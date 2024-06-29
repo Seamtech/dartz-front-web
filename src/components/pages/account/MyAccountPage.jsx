@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import DataTable from '../../global/table/DataTable';
 import ThreeColumnLayout from '../../global/three-column-layout/ThreeColumnLayout';
-import myAccountService from '../../../services/myAccountService';
 import GlobalModal from '../../global/modal/GlobalModal';
 import MyAccountProfileForm from './MyAccountProfileForm';
 import MyAccountPasswordForm from './MyAccountPasswordForm';
 import FormButton from '../../global/forms/FormButton';
+import {myAccountService} from '../../../services/user/myAccountService';
+
 const MyAccountPage = () => {
   const profileId = useSelector((state) => state.user.profileId);
   const [userInfo, setUserInfo] = useState(null);

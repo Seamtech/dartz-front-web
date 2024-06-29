@@ -1,4 +1,4 @@
-import api from './api/authApiService';
+import api from '../api/authApiService';
 
 const getPlayerDetails = async ({ type, value }) => {
   try {

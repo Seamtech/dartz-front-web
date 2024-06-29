@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import DataTable from '../../../global/table/DataTable';
 import ThreeColumnLayout from '../../../global/three-column-layout/ThreeColumnLayout';
+import playerService from '../../../../services/player/playerService';
 
 const PlayerProfile = () => {
   const location = useLocation();
@@ -80,7 +81,7 @@ const PlayerProfile = () => {
       <main className="main-content">
         <h1 className="sovjet-page-heading">Player Profile</h1>
         <section className="content-box">
-          <h4>Player: {data[0].firstName} {data[0].lastName}</h4>
+          <h4 className="sovjet-section-heading">{data[0].firstName} {data[0].lastName}</h4>
           <DataTable
             columns={columns}
             data={data}

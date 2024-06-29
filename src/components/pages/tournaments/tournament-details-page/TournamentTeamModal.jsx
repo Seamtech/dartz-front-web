@@ -1,19 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom for navigation
-import { GlobalModal } from '../../../global'; // Import GlobalModal from global
+import { Link } from 'react-router-dom';
+import { GlobalModal } from '../../../global';
+
 const TournamentTeamModal = ({ team, show, onClose }) => {
+  const CheckMark = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.44z"/>
+    </svg>
+  );
+
   return (
     <GlobalModal
-      title={`Team: ${team.teamName}`}
+      title={`Team: ${team.name}`}
       show={show}
       onClose={onClose}
       footerButtons={[{ text: 'Close', variant: 'secondary', onClick: onClose }]}
     >
       <ul>
-        {team.membersDetails?.map((member, index) => (
-          member ? (
+        {team.players?.map((player, index) => (
+          player ? (
             <li key={index}>
-              <Link to={`/players/playerProfile?username=${member.username}`}>{member.first_name} {member.last_name}</Link>
+              <Link to={`/players/playerProfile?id=${player.profileId}`}>
+                {player.profile.username}
+              </Link>
+              {player.status === 'Checked In' && <CheckMark />}
             </li>
           ) : null
         ))}

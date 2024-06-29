@@ -1,4 +1,4 @@
-import api from './api/apiService';
+import api from '../api/apiService';
 
 const getLeaderboard = async (field) => {
   try {

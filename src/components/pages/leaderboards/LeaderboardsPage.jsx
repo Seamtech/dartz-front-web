@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LeaderboardsSelector, LeaderboardsDisplay } from './';
-import { leaderboardService } from '../../../services'; // Adjust the import path as needed
+import { leaderboardService } from '../../../services/leaderboards/leaderboardService'; // Adjust the import path as needed
 import './LeaderboardsPage.css';
 
 const leaderboardTypes = [

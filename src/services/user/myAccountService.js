@@ -1,4 +1,4 @@
-import api from './api/authApiService';
+import api from '../api/authApiService';
 
 const updateProfile = async (profileData) => {
   try {

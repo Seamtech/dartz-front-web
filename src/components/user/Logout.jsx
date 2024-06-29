@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/slices/userSlice'; // Adjust the import path as necessary
 import { persistor } from '../../redux/store'; // Adjust the import path as necessary
-import authService from '../../services/authService'; // Adjust the import path as necessary
+import authService from '../../services/user/authService'; // Adjust the import path as necessary
 
 const Logout = () => {
   const dispatch = useDispatch();

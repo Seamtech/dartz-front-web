@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FindPlayerForm from "./FindPlayerForm";
 import { useNavigate } from "react-router-dom";
 import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
-import playerService from "../../../../services/playerService";
+import playerService from "../../../../services/player/playerService";
 
 const FindPlayerPage = () => {
   const navigate = useNavigate();

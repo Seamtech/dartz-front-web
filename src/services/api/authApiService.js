@@ -1,7 +1,7 @@
 import apiInstance from './apiService';
 import { store } from '../../redux/store';
 import { logout, setRefreshToken } from '../../redux/slices/userSlice';
-import authService from '../authService'; // Adjust the import path
+import authService from '../user/authService';
 
 const authApi = apiInstance;
 

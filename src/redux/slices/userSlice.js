@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {jwtDecode} from 'jwt-decode';
-import authService from '../../services/authService';
+import authService from '../../services/user/authService';
 
 const extractUserInfo = (token) => {
   const decoded = jwtDecode(token);

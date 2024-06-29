@@ -1,107 +1,113 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TournamentsList from "./TournamentsList";
-import { tournamentService } from "../../../../services";
+import tournamentService from "../../../../services/tournaments/tournamentService";
 import { useSocket } from "../../../../contexts/SocketContext";
-import { crudActions } from "../../../.././utils/crudOperations";
+import { crudActions } from "../../../../utils/crudOperations";
 import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
 
 const TournamentsPage = () => {
-    // Retrieve socket connection and subscription functions from SocketContext
-    const { subscribe, unsubscribe, socket } = useSocket();
+  const { subscribe, unsubscribe, socket } = useSocket();
+  const [selectedType, setSelectedType] = useState("All");
+  const [tournaments, setTournaments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [subscription, setSubscription] = useState(false);
+  const [error, setError] = useState(null);
+  const [intervalId, setIntervalId] = useState(null);
 
-    // State variables for managing tournaments, loading state, error handling, and subscription
-    const [selectedType, setSelectedType] = useState("All");
-    const [tournaments, setTournaments] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [subscription, setSubscription] = useState(false);
-    const [error, setError] = useState(null);
+  const flattenTournamentData = (data) => {
+    return data.map(tournament => {
+      const scheduledStart = new Date(tournament.details.scheduledStart);
+      const date = scheduledStart.toLocaleDateString();
+      const time = scheduledStart.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  
+      const playerCount = tournament.teams.reduce((acc, team) => acc + (team.players ? team.players.length : 0), 0);
+  
+      return {
+        ...tournament,
+        name: tournament.details.tournamentName || "Unnamed Tournament",
+        scheduledStart: tournament.details.scheduledStart,
+        date,
+        time,
+        playerCount,
+        gameName: tournament.game.name,
+        entryFeeAmount: tournament.entryFeeAmount,
+        entryFeeType: tournament.entryFeeType,
+      };
+    });
+  };
 
-    // Function to handle updates received from the socket
+  const fetchTournaments = async () => {
+    setLoading(true);
+    try {
+      const data = await tournamentService.getTournaments();
+      const flattenedData = flattenTournamentData(data);
+      setTournaments(flattenedData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching tournaments:", error);
+      setError("Failed to fetch tournaments. Please try again later.");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTournaments();
+
+    const id = setInterval(fetchTournaments, 5 * 60 * 1000);
+    setIntervalId(id);
+
+    return () => {
+      clearInterval(id);
+      if (subscription && unsubscribe) {
+        unsubscribe("tournamentUpdate");
+      }
+    };
+  }, [socket]);
+
+  useEffect(() => {
     const handleTournamentUpdate = (update) => {
-        // Update tournaments state based on CRUD actions
-        if (update.type === "create" || update.type === "update" || update.type === "delete") {
-            setTournaments(prevTournaments => crudActions(update, prevTournaments));
-        } else if (update.type === "message") {
-            console.log("Received message from server:", update.message);
-        } else {
-            console.error("Invalid update type:", update.type);
-        }
+      setTournaments(crudActions(update, tournaments));
     };
 
-    // Fetch tournaments data and subscribe to socket updates when socket connection changes
-    useEffect(() => {
-        const fetchDataAndSubscribe = async () => {
-            setLoading(true);
-            try {
-                // Fetch tournaments data from the service
-                const data = tournamentService.getTournaments();
-                // Update tournaments state with fetched data
-                setTournaments(data);
-                setLoading(false);
-            } catch (err) {
-                // Handle errors during data fetching
-                console.error("Error fetching tournaments:", err);
-                setError("Failed to fetch tournaments. Please try again later.");
-                setLoading(false);
-            }
-        };
+    if (!loading && !subscription && tournaments.length > 0 && subscribe) {
+      subscribe("tournamentUpdate", handleTournamentUpdate);
+      setSubscription(true);
+    }
 
-        fetchDataAndSubscribe();
-    }, [socket]);
+    return () => {
+      if (subscription && unsubscribe) {
+        unsubscribe("tournamentUpdate", handleTournamentUpdate);
+      }
+    };
+  }, [loading, subscription, tournaments]);
 
-    // Subscribe to socket updates when tournaments data, loading state, and subscription state change
-    useEffect(() => {
-        if (!loading && !subscription && tournaments.length > 0 && subscribe) {
-            subscribe("tournamentUpdate", handleTournamentUpdate);
-            setSubscription(true);
-        }
-    }, [loading, subscription, tournaments, subscribe]);
+  const handleTypeChange = (e) => setSelectedType(e.target.value || "All");
 
-    // Unsubscribe from socket updates when subscription state changes
-    useEffect(() => {
-        return () => {
-            if (subscription) {
-                unsubscribe("tournamentUpdate", handleTournamentUpdate);
-            }
-        };
-    }, [subscription, unsubscribe]);
+  const filteredTournaments = tournaments.filter(t =>
+    selectedType === "All" || t.tournamentFormat.toLowerCase() === selectedType.toLowerCase()
+  );
 
-    // Handle change in selected tournament type
-    const handleTypeChange = (e) => setSelectedType(e.target.value || "All");
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
-    // Filter tournaments based on selected type
-    const filteredTournaments = tournaments.filter(
-        (t) => selectedType === "All" || t.type.toLowerCase() === selectedType.toLowerCase()
-    );
-
-    // Render loading indicator if data is being fetched
-    if (loading) return <div>Loading...</div>;
-    // Render error message if an error occurs
-    if (error) return <div>Error: {error}</div>;
-
-    // Render the tournaments page with three-column layout
-    return (
-        <ThreeColumnLayout>
-            <main className="main-content">
-                <h1 className="sovjet-page-heading">Upcoming Tournaments</h1>
-                <section className="content-box">
-                    <h2 className="sovjet-content-heading">Select Type</h2>
-                    {/* Dropdown menu to select tournament type */}
-                    <select value={selectedType} onChange={handleTypeChange}>
-                        <option value="All">All</option>
-                        <option value="SingleZ">SingleZ</option>
-                        <option value="DoubleZ">DoubleZ</option>
-                        <option value="TripZ">TripZ</option>
-                        <option value="FourZ">FourZ</option>
-                    </select>
-                    {/* Display selected tournament type */}
-                    <h3 className="sovjet-section-heading">{selectedType}</h3>
-                    {/* Render list of tournaments based on selected type */}
-                    <TournamentsList tournaments={filteredTournaments} />
-                </section>
-            </main>
-        </ThreeColumnLayout>
-    );
+  return (
+    <ThreeColumnLayout>
+      <main className="main-content">
+        <h1 className="sovjet-page-heading">Upcoming Tournaments</h1>
+        <section className="content-box">
+          <select value={selectedType} onChange={handleTypeChange}>
+            <option value="All">All</option>
+            <option value="SingleZ">SingleZ</option>
+            <option value="DoubleZ">DoubleZ</option>
+            <option value="TripZ">TripZ</option>
+            <option value="FourZ">FourZ</option>
+          </select>
+          <h3 className="sovjet-section-heading">{selectedType}</h3>
+          <TournamentsList tournaments={filteredTournaments} />
+        </section>
+      </main>
+    </ThreeColumnLayout>
+  );
 };
 
 export default TournamentsPage;

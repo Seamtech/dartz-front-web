@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Button, ListGroup } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
-import { roleBasedAccessService, pingService } from '../../../services';
+import { pingService } from '../../../services';
+import roleBasedAccessService from '../../../services/user/roleBasedAccessService';
 import ThreeColumnLayout from '../../global/three-column-layout/ThreeColumnLayout';
 
 const DashboardPage = () => {

@@ -28,8 +28,8 @@ body {
 
 .sovjet-page-heading {
   font-size: 2rem;
-  color: var(--primary-color);
-  letter-spacing: 0.1em;
+  color: var(--text-color);
+  letter-spacing: 0.2em;
   text-decoration: none;
   padding-top: 1.25rem;
   padding-bottom: 0.5rem;
@@ -38,7 +38,7 @@ body {
 .sovjet-content-heading {
   font-size: 1.5rem; /* was 2.0em, assuming base size of 1rem */
   color: #bea82a;
-  letter-spacing: 0.1rem; /* converted from 0.2em */
+  letter-spacing: 0.2rem; /* converted from 0.2em */
   text-decoration: underline;
   padding-top: 1.25rem;
   padding-bottom: 0.5rem;
@@ -47,7 +47,7 @@ body {
 .sovjet-section-heading {
   font-size: 1.25rem; /* was 1.5em, assuming base size of 1rem */
   color: #8b6129;
-  letter-spacing: 0.1rem; /* converted from 0.10em */
+  letter-spacing: 0.2rem; /* converted from 0.10em */
   padding-top: 1.25rem;
   padding-bottom: 0.5rem;
 }
@@ -140,19 +140,32 @@ select {
   .main-content {
     width: 100%;
   }
+  .sovjet-page-heading {
+    padding-top: 1rem;
+    font-size: 1.15rem;
+  }
+  .sovjet-content-heading {
+    font-size: 1.0rem;
+  }
+  .sovjet-section-heading {
+    font-size: .85rem;
+  }
+  .sovjet-text {
+    font-size: 0.75rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
 
   .sovjet-page-heading {
     padding-top: 1rem;
-    font-size: 1.50rem;
+    font-size: 1.15rem;
   }
   .sovjet-content-heading {
-    font-size: 1.25rem;
+    font-size: 1.0rem;
   }
   .sovjet-section-heading {
-    font-size: 1.1rem;
+    font-size: .85rem;
   }
   .sovjet-text {
     font-size: 0.75rem;
