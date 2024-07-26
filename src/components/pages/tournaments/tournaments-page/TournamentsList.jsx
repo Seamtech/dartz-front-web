@@ -5,10 +5,11 @@ import './TournamentsItem.css';
 
 const TournamentList = ({ tournaments }) => {
   const tournamentFields = [
-    { field: 'name', headerName: 'Name', renderCell: (row) => <Link to={`/tournaments/${row.id}`}>{row.name}</Link> },
-    { field: 'tournamentType', headerName: 'Type' },
+    { field: 'id', headerName: 'ID', renderCell: (row) => <Link to={`/tournaments/${row.id}`}>{row.id}</Link> },
+    { field: 'name', headerName: 'Name'},
     { field: 'date', headerName: 'Date' },
     { field: 'time', headerName: 'Time' },
+    { field: 'tournamentFormat', headerName: 'Format' },
     { field: 'entryFeeAmount', headerName: 'Entry', renderCell: (row) => `${row.entryFeeAmount} ${row.entryFeeType}` },
     { field: 'gameName', headerName: 'Game' },
     { field: 'playerCount', headerName: 'Teams' },

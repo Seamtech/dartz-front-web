@@ -5,7 +5,7 @@ import DataTable from '../../../global/table/DataTable';
 import ThreeColumnLayout from '../../../global/three-column-layout/ThreeColumnLayout';
 import playerService from '../../../../services/player/playerService';
 
-const PlayerProfile = () => {
+const PlayerProfilePage = () => {
   const location = useLocation();
   const [playerDetails, setPlayerDetails] = useState(location.state?.player || null);
   const [error, setError] = useState('');
@@ -17,16 +17,29 @@ const PlayerProfile = () => {
         const searchParams = new URLSearchParams(location.search);
         const id = searchParams.get('id');
         const username = searchParams.get('username');
+        const firstName = searchParams.get('firstName');
+        const lastName = searchParams.get('lastName');
 
-        if (!id && !username) {
+        if (!id && !username && !(firstName && lastName)) {
           setError('No player identifier provided.');
           return;
         }
 
         try {
           setIsLoading(true);
-          const searchType = id ? 'id' : 'username';
-          const searchValue = id || username;
+          let searchType;
+          let searchValue;
+
+          if (id) {
+            searchType = 'id';
+            searchValue = id;
+          } else if (username) {
+            searchType = 'username';
+            searchValue = username;
+          } else {
+            searchType = 'name';
+            searchValue = `${firstName},${lastName}`;
+          }
 
           const details = await playerService.getPlayerDetails({ type: searchType, value: searchValue });
 
@@ -44,11 +57,12 @@ const PlayerProfile = () => {
       }
     };
 
+
     fetchPlayerDetails();
   }, [location]);
 
   const columns = [
-    { field: 'profileId', headerName: 'Player ID' },
+    { field: 'id', headerName: 'Player ID' },
     { field: 'username', headerName: 'Username' },
     { field: 'email', headerName: 'Email' },
     { field: 'mobileNumber', headerName: 'Mobile Number' },
@@ -94,4 +108,4 @@ const PlayerProfile = () => {
   );
 };
 
-export default PlayerProfile;
+export default PlayerProfilePage;

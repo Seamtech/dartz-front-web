@@ -12,9 +12,9 @@ const Logout = () => {
   useEffect(() => {
     const performLogout = async () => {
       try {
-        await authService.logout(); // Call the backend API to logout
         dispatch(logout()); // Clear user state
         await persistor.purge(); // Optionally clear persisted state
+        authService.logout(); // Call the backend API to logout
         navigate('/login'); // Redirect to login page
       } catch (error) {
         console.error('Logout failed', error);

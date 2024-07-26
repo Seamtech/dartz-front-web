@@ -1,0 +1,19 @@
+.error-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+.error-heading {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #dc3545; /* Bootstrap's danger color */
+}
+
+.error-message {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}

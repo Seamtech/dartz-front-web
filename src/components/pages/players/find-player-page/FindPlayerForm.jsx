@@ -40,13 +40,13 @@ const FindPlayerForm = ({ onSearch }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          let criteria = { type: searchType, value: "" };
+          let criteria = { type: searchType, value: null };
           switch (searchType) {
             case "id":
               criteria.value = values.searchValue;
               break;
             case "name":
-              criteria.value = `${values.firstName} ${values.lastName}`;
+              criteria.value = `${values.firstName},${values.lastName}`;
               break;
             case "username":
               criteria.value = values.username;
@@ -73,7 +73,7 @@ const FindPlayerForm = ({ onSearch }) => {
               </select>
             </div>
             {searchType === "id" && (
-              <FormField name="searchValue" label="Player ID" type="text" />
+              <FormField name="searchValue" label="Player ID" type="integer" />
             )}
             {searchType === "name" && (
               <>

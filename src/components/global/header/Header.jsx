@@ -7,10 +7,10 @@ import NavLink from "./NavLink";
 import NavDropdown from "./NavDropdown";
 import "./Header.css";
 import { useUpdateNavHistory } from "../../../hooks";
+import roleBasedAccessService from "../../../services/user/roleBasedAccessService";
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false); // State to manage navbar collapse
-  const isLoggedIn = useSelector((state) => Boolean(state.user.refreshToken));
   useUpdateNavHistory();
 
   const handleCollapse = () => {
@@ -62,7 +62,7 @@ const Header = () => {
             <NavLink to="/rules" onClick={handleCollapse}>
               Rules
             </NavLink>
-            {!isLoggedIn ? (
+            {!roleBasedAccessService.isLoggedIn()? (
               <>
                 <NavLink to="/login" onClick={handleCollapse}>
                   Login
@@ -76,6 +76,11 @@ const Header = () => {
                 <NavLink to="/myaccount" onClick={handleCollapse}>
                   My Account
                 </NavLink>
+                {roleBasedAccessService.hasRequiredRole('admin') && (
+                  <NavLink to="/admin" onClick={handleCollapse}>
+                    Admin
+                  </NavLink>
+                )}
                 <NavLink to="/logout" onClick={handleCollapse}>
                   Logout
                 </NavLink>

@@ -4,7 +4,12 @@ import io from 'socket.io-client';
 // Global variable to hold the shared socket instance
 let sharedSocket = null;
 
-const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInterval = 3000) => {
+const useWebSocket = (
+  url,
+  shouldConnect,
+  maxRetryAttempts = 5,
+  retryInterval = 3000
+) => {
   // Ref to keep track of retry attempts and retry status
   const retryCountRef = useRef(0);
   const isRetryingRef = useRef(false);
@@ -17,20 +22,25 @@ const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInte
       const newSocket = io(url, { withCredentials: true });
 
       newSocket.on('connect', () => {
-        console.log("WebSocket connected.");
+        console.log('WebSocket connected.');
         retryCountRef.current = 0; // Reset retry count on successful connection
         isRetryingRef.current = false;
       });
-      newSocket.on('disconnect', () => console.log("WebSocket disconnected."));
+      newSocket.on('disconnect', () => console.log('WebSocket disconnected.'));
       newSocket.on('connect_error', (error) => {
         console.error('Connection Error:', error);
         // Retry connection if not already retrying and max attempts not reached
-        if (!isRetryingRef.current && retryCountRef.current < maxRetryAttempts) {
+        if (
+          !isRetryingRef.current &&
+          retryCountRef.current < maxRetryAttempts
+        ) {
           isRetryingRef.current = true;
           retryTimer = setTimeout(connectSocket, retryInterval);
           retryCountRef.current += 1;
         } else if (retryCountRef.current >= maxRetryAttempts) {
-          console.error(`Maximum retry attempts (${maxRetryAttempts}) reached. Giving up.`);
+          console.error(
+            `Maximum retry attempts (${maxRetryAttempts}) reached. Giving up.`
+          );
           // can add UI notifications here to inform the user about the connection issue
         }
       });
@@ -75,8 +85,8 @@ const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInte
       sharedSocket.emit('joinRoom', roomName);
       console.log(`Subscribed to ${roomName}`);
     } else {
-      console.error("Socket is not connected. Cannot subscribe.");
-      // You can add UI notifications here to inform the user about the connection issue
+      console.error('Socket is not connected. Cannot subscribe.');
+      // can add UI notifications here to inform the user about the connection issue
     }
   };
 
@@ -87,8 +97,8 @@ const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInte
       sharedSocket.emit('leaveRoom', roomName);
       console.log(`Unsubscribed from ${roomName}`);
     } else {
-      console.error("Socket is not connected. Cannot unsubscribe.");
-      // You can add UI notifications here to inform the user about the connection issue
+      console.error('Socket is not connected. Cannot unsubscribe.');
+      // can add UI notifications here to inform the user about the connection issue
     }
   };
 
@@ -96,4 +106,4 @@ const useWebSocketService = (url, shouldConnect, maxRetryAttempts = 5, retryInte
   return { socket: sharedSocket, subscribe, unsubscribe };
 };
 
-export default useWebSocketService;
+export default useWebSocket;

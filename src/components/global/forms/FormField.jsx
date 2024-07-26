@@ -30,7 +30,7 @@ const FormField = ({ label, editable = true, error, button, ...props }) => {
           {...field}
           {...props}
           type={showPassword ? 'text' : props.type}
-          className={editable ? 'editable' : ''}
+          className={editable ? 'editable highlighted' : 'editable'}
           isInvalid={meta.touched && !!meta.error}
           disabled={!editable}
         />

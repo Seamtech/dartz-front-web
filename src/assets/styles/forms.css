@@ -84,7 +84,7 @@
   font-size: .65rem;
 }
 
-.form-control.editable {
+.highlighted {
   border-color: yellow !important;
 }
 

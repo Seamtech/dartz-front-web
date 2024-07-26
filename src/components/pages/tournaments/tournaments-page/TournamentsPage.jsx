@@ -1,94 +1,46 @@
-import React, { useEffect, useState } from "react";
-import TournamentsList from "./TournamentsList";
-import tournamentService from "../../../../services/tournaments/tournamentService";
-import { useSocket } from "../../../../contexts/SocketContext";
-import { crudActions } from "../../../../utils/crudOperations";
-import ThreeColumnLayout from "../../../global/three-column-layout/ThreeColumnLayout";
+import React, { useEffect, useState } from 'react';
+import TournamentsList from './TournamentsList';
+import { useSocket } from '../../../../contexts/SocketContext';
+import { crudActions } from '../../../../utils/';
+import { ThreeColumnLayout, Loading } from '../../../global';
+import { useTournaments } from '../../../hooks';
 
 const TournamentsPage = () => {
   const { subscribe, unsubscribe, socket } = useSocket();
-  const [selectedType, setSelectedType] = useState("All");
-  const [tournaments, setTournaments] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState('All');
+  const { tournaments, loading, error, setTournaments } = useTournaments();
   const [subscription, setSubscription] = useState(false);
-  const [error, setError] = useState(null);
-  const [intervalId, setIntervalId] = useState(null);
-
-  const flattenTournamentData = (data) => {
-    return data.map(tournament => {
-      const scheduledStart = new Date(tournament.details.scheduledStart);
-      const date = scheduledStart.toLocaleDateString();
-      const time = scheduledStart.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  
-      const playerCount = tournament.teams.reduce((acc, team) => acc + (team.players ? team.players.length : 0), 0);
-  
-      return {
-        ...tournament,
-        name: tournament.details.tournamentName || "Unnamed Tournament",
-        scheduledStart: tournament.details.scheduledStart,
-        date,
-        time,
-        playerCount,
-        gameName: tournament.game.name,
-        entryFeeAmount: tournament.entryFeeAmount,
-        entryFeeType: tournament.entryFeeType,
-      };
-    });
-  };
-
-  const fetchTournaments = async () => {
-    setLoading(true);
-    try {
-      const data = await tournamentService.getTournaments();
-      const flattenedData = flattenTournamentData(data);
-      setTournaments(flattenedData);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching tournaments:", error);
-      setError("Failed to fetch tournaments. Please try again later.");
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchTournaments();
-
-    const id = setInterval(fetchTournaments, 5 * 60 * 1000);
-    setIntervalId(id);
-
-    return () => {
-      clearInterval(id);
-      if (subscription && unsubscribe) {
-        unsubscribe("tournamentUpdate");
-      }
-    };
-  }, [socket]);
 
   useEffect(() => {
     const handleTournamentUpdate = (update) => {
-      setTournaments(crudActions(update, tournaments));
+      setTournaments((prevTournaments) => crudActions(update, prevTournaments));
     };
 
     if (!loading && !subscription && tournaments.length > 0 && subscribe) {
-      subscribe("tournamentUpdate", handleTournamentUpdate);
+      subscribe('tournamentUpdate', handleTournamentUpdate);
       setSubscription(true);
     }
 
     return () => {
       if (subscription && unsubscribe) {
-        unsubscribe("tournamentUpdate", handleTournamentUpdate);
+        unsubscribe('tournamentUpdate', handleTournamentUpdate);
       }
     };
-  }, [loading, subscription, tournaments]);
+  }, [loading, subscription, tournaments, subscribe, unsubscribe, setTournaments]);
 
-  const handleTypeChange = (e) => setSelectedType(e.target.value || "All");
+  const handleTypeChange = (e) => setSelectedType(e.target.value || 'All');
 
-  const filteredTournaments = tournaments.filter(t =>
-    selectedType === "All" || t.tournamentFormat.toLowerCase() === selectedType.toLowerCase()
+  const filteredTournaments = tournaments.filter(
+    (t) => selectedType === 'All' || t.tournamentFormat.toLowerCase() === selectedType.toLowerCase()
   );
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Loading redirect={false} errorMessage={`Error loading tournaments: ${error.message}`} />;
+  }
 
   return (
     <ThreeColumnLayout>

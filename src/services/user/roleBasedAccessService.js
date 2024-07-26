@@ -3,9 +3,10 @@ import { store } from '../../redux/store'; // Adjust the import path as needed
 const roles = {
   public: 0,
   user: 1,
-  director: 2,
-  admin: 3,
-  root: 4,
+  host: 2,
+  director: 3,
+  admin: 4,
+  root: 5,
 };
 
 const roleBasedAccessService = {

@@ -121,6 +121,13 @@ const userSlice = createSlice({
       })
       .addCase(logoutUser.pending, (state) => {
         state.isLoading = true;
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.user = null;
+        state.userId = null; // Clear userId on logout
+        state.profileId = null; // Clear profileId on logout
+        state.role = 'public';
+        state.error = action.payload;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.isLoading = false;

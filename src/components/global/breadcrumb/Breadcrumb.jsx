@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { Breadcrumb } from "react-bootstrap";
 import { pushToHistory, setBreadcrumbHistory } from '../../../redux/slices/navigationSlice'; // Adjust the import path
-import "./Breadcrumb.scss";
+import "./Breadcrumb.css";
 
 // Utility function to format breadcrumb labels
 const formatBreadcrumbLabel = (path, pathname) => {
@@ -25,20 +25,25 @@ const formatBreadcrumbLabel = (path, pathname) => {
   return formattedString;
 };
 
+// List of paths to exclude from the breadcrumb history
+const excludedPaths = ['/error'];
+
 const CustomBreadcrumb = () => {
   const dispatch = useDispatch();
   const history = useSelector(state => state.breadcrumb?.history) || [];
   const location = useLocation();
 
   useEffect(() => {
-    if (!history.includes(location.pathname)) {
+    if (!history.includes(location.pathname) && !excludedPaths.includes(location.pathname)) {
       dispatch(pushToHistory(location.pathname));
     }
   }, [location.pathname, history, dispatch]);
 
   const handleBreadcrumbClick = (path) => {
-    const newHistory = history.filter(item => item !== path).concat(path);
-    dispatch(setBreadcrumbHistory(newHistory));
+    if (history[history.length - 1] !== path) {
+      const newHistory = history.filter(item => item !== path).concat(path);
+      dispatch(setBreadcrumbHistory(newHistory));
+    }
   };
 
   return (

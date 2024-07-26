@@ -1,85 +1,91 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0; /* Ensure it spans from the left edge */
+  left: 0;
   width: 100%;
-  z-index: 1050; /* Bootstrap's default z-index for navbar is 1030, but you can adjust as needed */
+  z-index: 1050;
   background-color: #1d1c1c;
   color: #fff;
   display: flex;
-  flex-direction: row; /* Changed to row for horizontal alignment */
-  justify-content: space-between; /* Distribute space between logo and nav items */
-  padding: 0.5rem 1rem; /* Add some padding for spacing */
-  box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Optional: adds a subtle shadow for depth */
-  border-bottom : 1px solid #a18b0f;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #a18b0f;
 }
 
 .logo {
-  flex-shrink: 0; /* Prevents the logo from shrinking */
-  max-width: 200px; /* Adjust based on your logo's aspect ratio */
+  flex-shrink: 0;
+  max-width: 200px;
   height: auto;
 }
 
 .navbar {
   display: flex;
-  width: auto; /* Auto width based on content */
-  color: var(--text-color) !important; /* Use your custom text color */
-  font-family: 'Sovjet Box'; /* Use your custom font here */
+  width: auto;
+  color: var(--text-color) !important;
+  font-family: 'Sovjet Box';
 }
+
 .navbar-toggler-icon {
-  background-color: var(--background-color) !important; /* Use your custom primary color */
+  background-color: var(--background-color) !important;
   padding: 1rem;
-  border: 1px solid var(--border-color) !important; /* Use your custom primary color */
+  border: 1px solid var(--border-color) !important;
 }
-/* Improve dropdown menu appearance */
+
 .dropdown-menu {
   background-color: var(--primary-color);
   padding: 0 !important;
 }
+
 .dropdown-menu:hover {
   background-color: var(--primary-color) !important;
 }
 
-.nav-link, .nav-link:visited {
+.nav-link,
+.nav-link:visited {
   font-family: 'Sovjet Box' !important;
   color: var(--primary-color) !important;
   transition: color 0.3s ease;
 }
 
-.nav-link:hover, .dropdown-item:hover {
-  color: var(--text-color) !important; /* Consistent hover effect for links */
-}
-
-.dropdown-menu, .dropdown-item {
-  background-color: var(--background-color) !important;
-  transition: var(--background-color) 0.3s ease; /* Smooth transition for hover background */
-  color: var(--primary-color) !important;
-  border: .1rem solid var(--primary-color) !important; /* Add a border to separate dropdown items */
-}
-.dropdown-menu .dropdown-item:first-child {
-  border-top: none !important; /* Remove border from the first dropdown item */
-}
-.dropdown-menu .dropdown-item:last-child {
-  border-bottom: none !important; /* Remove border from the last dropdown item */
-} 
+.nav-link:hover,
 .dropdown-item:hover {
-  background-color: var(--hover-background-color) !important; /* Consistent hover effect for dropdown items */
   color: var(--text-color) !important;
 }
 
+.dropdown-menu,
+.dropdown-item {
+  background-color: var(--background-color) !important;
+  transition: var(--background-color) 0.3s ease;
+  color: var(--primary-color) !important;
+  border: 0.1rem solid var(--primary-color) !important;
+}
 
-/* Responsive adjustments */
-@media (max-width: 992px) { /* Adjust breakpoint if needed */
+.dropdown-menu .dropdown-item:first-child {
+  border-top: none !important;
+}
+
+.dropdown-menu .dropdown-item:last-child {
+  border-bottom: none !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-background-color) !important;
+  color: var(--text-color) !important;
+}
+
+@media (max-width: 992px) {
   .header {
-    flex-direction: column; /* Stack logo and navbar vertically on smaller screens */
+    flex-direction: column;
   }
 
   .navbar-toggler {
-    margin-bottom: 0.5rem; /* Adds spacing between toggler and collapsed menu */
+    margin-bottom: 0.5rem;
   }
 
   .navbar-collapse {
-    width: 100%; /* Ensure the collapsed menu spans the full width */
+    width: 100%;
   }
 }
 
@@ -87,18 +93,19 @@
   .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
-    justify-content: center; /* Center navbar items when collapsed */
+    justify-content: center;
   }
 
   .nav {
-    flex-direction: column; /* Stack nav items vertically in collapsed mode */
+    flex-direction: column;
   }
 }
 
 @media (max-width: 480px) {
   .logo {
-    max-width: 175px; /* Further reduce the logo size on very small screens */
+    max-width: 175px;
   }
+
   .navbar-toggler .collapsed {
     background-color: #fff;
   }

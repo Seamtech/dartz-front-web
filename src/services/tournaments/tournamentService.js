@@ -23,10 +23,11 @@ export const getTournamentById = async (id) => {
   }
 };
 
-// Adjusted to take a single object parameter
-export const registerTeam = async ({tournamentId, team}) => {
+// Adjusted to take a single object parameter 
+export const registerTeam = async (team) => {
   try {
-    const response = await api.post(`/tournaments/${tournamentId}/register-team`, team);
+    console.log('Registering team:', team); // Debug log
+    const response = await api.post(`/tournaments/register-team`, team);
     return response.data;
   } catch (error) {
     console.error('Failed to register team:', error);
@@ -46,11 +47,19 @@ export const updatePlayerStatus = async (tournamentId, teamId, playerId, status)
   }
 };
 
+export const getGames = async (platform = null) => {
+  const response = await api.get('/games', {
+    params: platform && platform !== 'All' ? { platform } : {},
+  });
+  return response.data;
+};
+
 const tournamentService = {
   getTournaments,
   getTournamentById,
   registerTeam,
   updatePlayerStatus,
+  getGames,
 };
 
 export default tournamentService;

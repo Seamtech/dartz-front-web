@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { DataTable } from '../../../global';
 import TournamentTeamModal from './TournamentTeamModal';
 
-const TournamentRegisteredPlayersList = ({ teams, tournamentFormat }) => {
+const TournamentRegisteredPlayersList = ({ teams = [], tournamentFormat }) => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
   console.log(tournamentFormat);
   const CheckMark = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.44z"/>
+      <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.44z" />
     </svg>
   );
 
@@ -22,20 +26,30 @@ const TournamentRegisteredPlayersList = ({ teams, tournamentFormat }) => {
   };
 
   const renderTeamNameCell = (team) => {
+    if (!team || !team.players || !team.players.length) return '-';
+
     const player1 = team.players[0];
     return (
       tournamentFormat === 'SingleZ'
-        ? <a href={`/players/playerProfile?id=${player1.profileId}`}>{player1.profile.username}</a>
-        : <button onClick={() => handleTeamNameClick(team)} style={{ cursor: 'pointer', background: 'none', border: 'none', textDecoration: 'underline' }}>
-            {player1.profile.username}
-          </button>
+        ? <button
+          onClick={() => navigate(`/players/playerProfile?id=${player1.profileId}`)}
+          style={{ cursor: 'pointer', background: 'none', border: 'none', textDecoration: 'underline' }}
+        >
+          {player1.profile.username}
+        </button>
+        : <button
+          onClick={() => handleTeamNameClick(team)}
+          style={{ cursor: 'pointer', background: 'none', border: 'none', textDecoration: 'underline' }}
+        >
+          {player1.profile.username}
+        </button>
     );
   };
-
+  console.log(tournamentFormat);
   const columns = tournamentFormat === 'SingleZ' ? [
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: 'Player Name',
       renderCell: (row) => renderTeamNameCell(row)
     },
     {
@@ -46,7 +60,7 @@ const TournamentRegisteredPlayersList = ({ teams, tournamentFormat }) => {
   ] : [
     {
       field: 'name',
-      headerName: 'Team Name',
+      headerName: 'Team Captain',
       renderCell: (row) => renderTeamNameCell(row)
     },
     {
@@ -60,10 +74,10 @@ const TournamentRegisteredPlayersList = ({ teams, tournamentFormat }) => {
     <>
       <h3 className="sovjet-section-heading">Registered Teams: {teams.length}</h3>
       <DataTable columns={columns} data={teams} hideColumnsOnMobile={['']} />
-      {showModal && (
+      {showModal && selectedTeam && (
         <TournamentTeamModal
           team={selectedTeam}
-          show={showModal} // Use showModal state here instead of !!selectedTeam
+          show={showModal}
           onClose={handleCloseModal}
         />
       )}
